@@ -1,4 +1,15 @@
-# Aset dresscode
+# Aset visual
+
+## Monogram A&S
+
+Monogram perkahwinan A&S dijana menggunakan built-in imagegen pada 21 Oktober 2026: huruf berjalin, kemasan gold foil dan hiasan daun halus pada latar telus. [Prompt penuh](branding/monogram-as-gold-v1-prompt.md).
+
+- Sumber asal: `references/branding/monogram-as-gold-source-v1.png`.
+- Logo web: `public/assets/monogram-as-gold-v1.webp` (768 × 564).
+- Favicon: `public/assets/monogram-as-gold-favicon-v1.png` (128 × 128).
+- Eksport semula: `node scripts/export-monogram.mjs`. Warna dan alpha asal dikekalkan; hanya margin telus, saiz dan format eksport disesuaikan.
+
+## Dresscode
 
 `public/assets/dresscode-pieces.png` ialah atlas PNG telus 4 × 4, 1254 × 1254 piksel, dijana untuk lookbook pakaian pada projek asal. Ia mengandungi pakaian dan aksesori sahaja, tanpa foto individu atau data klien.
 

@@ -24,15 +24,17 @@ test('horizontal transition handles interrupted navigation without stale pages o
   expect(errors).toEqual([]);
 });
 
-test('dresscode sketch filter stays attached in the outgoing transition layer', async ({ page }) => {
+test('original outfit colors remain unfiltered in the outgoing transition layer', async ({ page }) => {
   await page.goto('/#dresscode');
-  await expect(page.locator('.filter-defs filter#dresscode-sketch')).toHaveCount(1);
+  await expect(page.locator('main')).toHaveAttribute('data-page', 'dresscode');
+  await expect(page.locator('main')).not.toHaveAttribute('data-transitioning');
+  expect(await page.locator('main .piece-art').first().evaluate(element => getComputedStyle(element).filter)).toBe('none');
   await page.locator('nav a[href="#location"]').click();
   const outgoing = page.locator('.site-transition-old');
   await expect(outgoing).toHaveCount(1);
-  await expect(outgoing.locator('.filter-defs filter#dresscode-sketch')).toHaveCount(1);
-  const filter = await outgoing.locator('.piece-art').first().evaluate(element => getComputedStyle(element).filter);
-  expect(filter).toContain('dresscode-sketch');
+  const art = await outgoing.locator('.piece-art').first().evaluate(element => ({ filter: getComputedStyle(element).filter, source: getComputedStyle(element).backgroundImage }));
+  expect(art.filter).toBe('none');
+  expect(art.source).toContain('/assets/dresscode-pieces.png');
   await expect(page.locator('main')).toHaveAttribute('data-page', 'location');
 });
 

@@ -24,7 +24,6 @@ const compact = () => matchMedia('(max-width: 600px)').matches;
 export function dresscodeBoard() {
   return `<div class="dresscode-playground">
     <div class="outfit-tabs" role="group" aria-label="Pilihan pakaian"><button type="button" data-outfit-group="women">Wanita</button><button type="button" data-outfit-group="men">Lelaki</button></div>
-    <svg class="filter-defs" aria-hidden="true" focusable="false"><filter id="dresscode-sketch" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="0" result="mono"/><feConvolveMatrix in="mono" order="3" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" divisor="1" bias="0.12" preserveAlpha="true" result="edges"/><feComponentTransfer in="edges"><feFuncR type="table" tableValues="0.91 0.65 0.26 0.19"/><feFuncG type="table" tableValues="0.79 0.47 0.08 0.03"/><feFuncB type="table" tableValues="0.52 0.24 0.11 0.07"/></feComponentTransfer></filter></svg>
     <div class="outfit-board" role="group" aria-label="Lookbook interaktif" aria-describedby="drag-help" data-group="${selectedGroup}">
       ${pieces.map(piece => `<button type="button" class="dress-piece" data-piece="${piece.id}" data-side="${piece.side}" aria-label="${piece.label}" aria-describedby="drag-help" title="${piece.label}" style="--sprite-x:${(piece.cell % 4) * 100 / 3}%;--sprite-y:${Math.floor(piece.cell / 4) * 100 / 3}%;z-index:${piece.layer}"><span class="piece-art" aria-hidden="true"></span></button>`).join('')}
     </div>

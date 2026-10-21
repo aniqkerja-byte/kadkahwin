@@ -1,6 +1,5 @@
 .dresscode-style { text-align: center; font-size: 16px; margin: 0; }
 .dresscode-playground { width: min(100%, 740px); margin: 12px auto 0; }
-.filter-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .outfit-board { position: relative; aspect-ratio: 2; isolation: isolate; margin-top: 0; }
 .dress-piece {
   position: absolute;
@@ -22,12 +21,12 @@
   background-position: var(--sprite-x) var(--sprite-y);
   background-repeat: no-repeat;
   pointer-events: none;
-  filter: url(#dresscode-sketch) grayscale(1) contrast(1.25);
+  filter: none;
   transition: filter .15s;
 }
-.dress-piece:hover .piece-art, .dress-piece:focus-visible .piece-art { filter: url(#dresscode-sketch) grayscale(1) contrast(1.25) drop-shadow(0 3px 3px #16223c22); }
+.dress-piece:hover .piece-art, .dress-piece:focus-visible .piece-art { filter: drop-shadow(0 3px 3px #18030c55); }
 .dress-piece.is-dragging { cursor: grabbing; }
-.dress-piece.is-dragging .piece-art { filter: url(#dresscode-sketch) grayscale(1) contrast(1.25) drop-shadow(0 8px 5px #16223c33); }
+.dress-piece.is-dragging .piece-art { filter: drop-shadow(0 8px 5px #18030c66); }
 .outfit-board.is-dragging { cursor: grabbing; }
 .outfit-tabs { display: none; }
 .dresscode-note { text-align: center; margin-top: 12px; font-size: 14px; }

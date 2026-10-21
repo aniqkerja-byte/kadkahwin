@@ -75,9 +75,6 @@ button:focus-visible, a:focus-visible, input:focus-visible,
   box-shadow: inset 0 0 28px #1a020d33, 0 8px 28px #16020a30;
 }
 .note-page .memory img { filter: none; opacity: .92; }
-.piece-art { filter: url(#dresscode-sketch); }
-.dress-piece:hover .piece-art, .dress-piece:focus-visible .piece-art { filter: url(#dresscode-sketch) drop-shadow(0 3px 3px #e8c98522); }
-.dress-piece.is-dragging .piece-art { filter: url(#dresscode-sketch) drop-shadow(0 8px 5px #e8c98533); }
 .site-transition-new { box-shadow: -18px 0 34px #18030c24, 18px 0 34px #18030c24; }
 
 @supports (background-clip: text) {

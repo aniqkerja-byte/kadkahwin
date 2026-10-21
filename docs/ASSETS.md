@@ -1,6 +1,10 @@
 # Aset visual
 
-## Ilustrasi masjid gold (lokasi)
+## Ilustrasi masjid gold v2 (aktif)
+
+`public/assets/mosque-gold-user-v2.png` ialah gambar pengganti 2171 × 724 yang dipilih pengguna. Fail PNG disalin terus tanpa suntingan warna atau bentuk dan digunakan pada halaman lokasi Masjid Negara.
+
+## Ilustrasi masjid gold v1 (arkib)
 
 Ilustrasi masjid yang dibekalkan pengguna ditukar daripada biru kepada gold dengan latar telus melalui built-in imagegen. Bentuk ilustrasi asal dikekalkan; nama lokasi demo kini Masjid Negara, Kuala Lumpur, dengan pautan carian peta yang sepadan.
 

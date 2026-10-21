@@ -137,7 +137,7 @@ function locationPage() {
   return `<section class="page location-page" data-page-scroll tabindex="0" aria-labelledby="page-title">
     <div class="location-content">
       <div class="section-heading"><p class="eyebrow">Lokasi majlis</p><h1 id="page-title" class="sr-only" tabindex="-1">Lokasi majlis</h1></div>
-      <img class="venue-lineart" src="/assets/mosque-gold-v1.webp" alt="Ilustrasi masjid berwarna gold" width="1200" height="400" />
+      <img class="venue-lineart" src="/assets/mosque-gold-user-v2.png" alt="Ilustrasi masjid berwarna gold" width="2171" height="724" />
       <div class="location-details"><h2>${wedding.venue}</h2><p>${wedding.location}</p><a class="button" href="${wedding.mapsUrl}" target="_blank" rel="noopener noreferrer">${pin}Buka Google Maps${external}</a></div>
       <div class="contacts"><h2 class="assistance-heading">${wedding.assistanceHeading}</h2><div class="contact-grid" data-count="${contacts.length}">${contacts.map(c=>`<div class="contact"><span class="contact-name">${c.name}</span><span class="contact-number">${c.phone} · Contoh sahaja</span></div>`).join('')}</div></div>
     </div>

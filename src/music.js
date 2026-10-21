@@ -1,0 +1,69 @@
+export function installWeddingMusic() {
+  // Keep one player outside #app so page-transition clones never duplicate it.
+  const audio = document.createElement('audio');
+  audio.id = 'wedding-music';
+  audio.src = '/assets/teman-hidup-wedding.mp3';
+  audio.preload = 'none';
+  audio.loop = true;
+  audio.volume = .35;
+  audio.hidden = true;
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'music-toggle';
+  button.title = 'TULUS — Teman Hidup';
+  button.setAttribute('aria-controls', audio.id);
+  button.setAttribute('aria-pressed', 'false');
+  button.innerHTML = '<span class="music-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="music-label">Mainkan</span>';
+
+  let wantsPlayback = false;
+  let revision = 0;
+  const removeAutoStart = () => document.removeEventListener('pointerdown', firstInteraction, true);
+  const sync = () => {
+    const playing = !audio.paused;
+    button.classList.toggle('is-playing', playing);
+    button.setAttribute('aria-pressed', String(playing));
+    button.setAttribute('aria-label', `${playing ? 'Jeda' : 'Mainkan'} muzik: TULUS — Teman Hidup`);
+    button.querySelector('.music-label').textContent = playing ? 'Muzik' : 'Mainkan';
+  };
+  const play = async () => {
+    removeAutoStart();
+    wantsPlayback = true;
+    const request = ++revision;
+    try {
+      if (audio.error) audio.load();
+      await audio.play();
+      if (request !== revision && !wantsPlayback) audio.pause();
+    } catch {
+      if (request !== revision) return;
+      wantsPlayback = false;
+      sync();
+      button.title = 'Tekan untuk cuba mainkan TULUS — Teman Hidup';
+    }
+  };
+  function firstInteraction(event) {
+    if (!event.isTrusted || button.contains(event.target)) return;
+    void play();
+  }
+  button.addEventListener('click', () => {
+    removeAutoStart();
+    if (wantsPlayback) {
+      wantsPlayback = false;
+      revision++;
+      audio.pause();
+      sync();
+    } else {
+      void play();
+    }
+  });
+  audio.addEventListener('play', sync);
+  audio.addEventListener('pause', sync);
+  audio.addEventListener('error', () => {
+    wantsPlayback = false;
+    sync();
+    button.title = 'Muzik belum dapat dimuatkan. Tekan untuk cuba lagi.';
+  });
+  document.body.append(audio, button);
+  document.addEventListener('pointerdown', firstInteraction, true);
+  sync();
+}

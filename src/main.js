@@ -13,6 +13,8 @@ import './location.css';
 import './rsvp.css';
 import './demo.css';
 import './theme.css';
+import './music.css';
+import { installWeddingMusic } from './music.js';
 import { pages as allPages, wedding } from './content.js';
 import { brideSite, siteConfig } from './config/index.js';
 import { submitRsvp, validateRsvp } from './rsvp.js';
@@ -29,6 +31,7 @@ const external = `<svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class=
 const pin = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="small-icon"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>`;
 
 const app = document.querySelector('#app');
+installWeddingMusic();
 app.innerHTML = `
   <header class="mobile-header">
     <a class="wordmark" href="#home" aria-label="Adam dan Sara — Utama"><img src="/assets/monogram.svg" alt="" width="180" height="96" /></a>

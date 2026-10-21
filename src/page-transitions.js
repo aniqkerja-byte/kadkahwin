@@ -86,6 +86,10 @@ export function createPageTransitions(container) {
     opening.innerHTML = '<div class="opening-light"></div><div class="opening-leaf opening-leaf-left"></div><div class="opening-leaf opening-leaf-right"></div><img class="opening-monogram" src="/assets/monogram-as-reference-gold-v3.webp" alt="" width="768" height="768"/>';
     root.append(opening);
     container.dataset.opening = 'true';
+    // Keep the same camera distance relative to the paper width on wide screens.
+    // A fixed 1800px perspective made desktop leaves grow towards the viewer
+    // and clip far outside the card while the phone version opened naturally.
+    const perspective = Math.max(1800, root.clientWidth * (1800 / 390));
     const effects = [
       animate(opening.querySelector('.opening-monogram'), [
         { opacity: 0, scale: '.96', offset: 0 },
@@ -97,9 +101,9 @@ export function createPageTransitions(container) {
         { opacity: 0, offset: 0 }, { opacity: .5, offset: .55 }, { opacity: 0, offset: 1 },
       ], { delay: 400, duration: 2400, easing: 'ease-in-out' }),
       ...['left', 'right'].map((side, index) => animate(opening.querySelector(`.opening-leaf-${side}`), [
-        { transform: 'perspective(1800px) rotateY(0deg)', opacity: 1 },
-        { transform: `perspective(1800px) rotateY(${index ? '' : '-'}84deg)`, opacity: 1, offset: .85 },
-        { transform: `perspective(1800px) rotateY(${index ? '' : '-'}94deg)`, opacity: 0 },
+        { transform: `perspective(${perspective}px) rotateY(0deg)`, opacity: 1 },
+        { transform: `perspective(${perspective}px) rotateY(${index ? '' : '-'}84deg)`, opacity: 1, offset: .85 },
+        { transform: `perspective(${perspective}px) rotateY(${index ? '' : '-'}94deg)`, opacity: 0 },
       ], { delay: 320, duration: 1900, easing: 'cubic-bezier(.45, 0, .18, 1)' })),
     ];
     const reveal = (element, delay, duration = 1400, distance = 14) => {

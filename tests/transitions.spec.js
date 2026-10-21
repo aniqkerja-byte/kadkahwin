@@ -88,6 +88,38 @@ test('arrival opens slowly then settles with every name and event detail visible
   await expect(page.locator('audio')).toHaveCount(1);
 });
 
+test('desktop opening keeps the phone proportions without oversized door panels', async ({ page }) => {
+  const samples = [];
+  for (const width of [390, 1440, 1920]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(`/?opening-preview=${width}#home`);
+    await expect(page.locator('.card-opening')).toHaveCount(1);
+    const geometry = await page.evaluate(() => {
+      for (const animation of document.getAnimations()) {
+        animation.pause();
+        animation.currentTime = 1100;
+      }
+      const opening = document.querySelector('.card-opening').getBoundingClientRect();
+      const left = document.querySelector('.opening-leaf-left').getBoundingClientRect();
+      const right = document.querySelector('.opening-leaf-right').getBoundingClientRect();
+      return {
+        widthRatio: left.width / opening.width,
+        heightRatio: left.height / opening.height,
+        symmetry: Math.abs(left.width - right.width),
+        gap: right.left - left.right,
+      };
+    });
+    expect(geometry.heightRatio).toBeLessThan(1.15);
+    expect(geometry.symmetry).toBeLessThan(1);
+    expect(geometry.gap).toBeGreaterThan(0);
+    samples.push(geometry);
+  }
+  for (const sample of samples.slice(1)) {
+    expect(sample.widthRatio).toBeCloseTo(samples[0].widthRatio, 3);
+    expect(sample.heightRatio).toBeCloseTo(samples[0].heightRatio, 3);
+  }
+});
+
 test('a touch skips the opening immediately and ordinary navigation does not replay it', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/#invitation');

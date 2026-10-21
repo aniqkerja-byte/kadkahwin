@@ -1,8 +1,15 @@
 # Aset visual
 
-## Monogram A&S
+## Monogram AS minimal (aktif)
 
-Monogram perkahwinan A&S dijana menggunakan built-in imagegen pada 21 Oktober 2026: huruf berjalin, kemasan gold foil dan hiasan daun halus pada latar telus. [Prompt penuh](branding/monogram-as-gold-v1-prompt.md).
+Logo semasa menggunakan huruf **AS bersatu**, tanpa ampersand, hiasan, glow atau kesan 3D. Bentuk huruf serif Cormorant Garamond 500 ditukar kepada path SVG, dengan satu warna gold rata `#e8c985` dan latar telus. SVG digunakan untuk header, sidebar dan favicon.
+
+- Logo vektor: `public/assets/monogram-as-minimal-v2.svg`.
+- Bina semula: pasang FontTools pada Python, kemudian jalankan `python scripts/build-minimal-monogram.py` selepas `pnpm install`.
+
+## Monogram A&S gold v1 (arkib)
+
+Versi terdahulu dijana menggunakan built-in imagegen pada 21 Oktober 2026: huruf berjalin, kemasan gold foil dan hiasan daun halus pada latar telus. Tidak lagi digunakan oleh laman. [Prompt penuh](branding/monogram-as-gold-v1-prompt.md).
 
 - Sumber asal: `references/branding/monogram-as-gold-source-v1.png`.
 - Logo web: `public/assets/monogram-as-gold-v1.webp` (768 × 564).

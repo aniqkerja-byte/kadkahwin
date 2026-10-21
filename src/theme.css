@@ -42,7 +42,35 @@ body { background: var(--paper); }
 .sidebar.is-open { background: var(--card-background); border: 1px solid var(--rule); }
 .brand { width: 76px; margin-bottom: 38px; }
 .brand img { width: 100%; mix-blend-mode: normal; opacity: 1; }
-.couple-names { color: var(--ink); }
+.home-page .home-flower { width: 96px; margin: 0 auto 14px; }
+.home-page .couple-names {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: .2em;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 28px;
+  color: var(--ink);
+  font-size: clamp(82px, 7.5vw, 112px);
+  line-height: 1.25;
+}
+.home-page .couple-names .groom-name,
+.home-page .couple-names .bride-name {
+  margin: 0;
+  font-family: var(--script);
+  font-size: 1em;
+  line-height: inherit;
+  white-space: nowrap;
+}
+.home-page .couple-names .ampersand {
+  align-self: baseline;
+  margin: 0;
+  font-size: .38em;
+  line-height: 1;
+  transform: none;
+}
+.home-page .event-summary { margin-top: 0; }
 .sidebar nav a, .desktop-header, .section-heading .eyebrow,
 .form-field label>span, fieldset legend>span, .contact-number,
 .location-details .map-caption, .outfit-tabs button, .note-bottom,
@@ -94,6 +122,8 @@ button:focus-visible, a:focus-visible, input:focus-visible,
 @keyframes gold-foil { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 @media (max-width: 767px) {
   .mobile-header .wordmark { width: 50px; }
+  .home-page .home-flower { width: 72px; margin-bottom: 18px; }
+  .home-page .couple-names { font-size: clamp(46px, 13.4vw, 78px); gap: .16em; margin-bottom: 26px; }
   #app::before, .site-transition-layer::before { inset: 8px; border-color: #d8b66c24; }
 }
 @media (min-width: 768px) and (max-width: 1150px) { .brand { width: 72px; } }

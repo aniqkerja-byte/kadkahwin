@@ -20,8 +20,8 @@ export function installWeddingMusic() {
     slot.innerHTML = `
       <button type="button" class="music-toggle" aria-label="Buka pemain muzik: Teman Hidup — TULUS" aria-expanded="false" aria-controls="${panelId}">${noteIcon}</button>
       <section id="${panelId}" class="music-panel" aria-label="Pemain muzik" hidden>
-        <div class="music-panel-heading"><p>Muzik pengiring</p><button type="button" class="music-close" aria-label="Tutup pemain muzik"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg></button></div>
-        <div class="music-track"><img src="/assets/tulus-album-cover.png" alt="Kulit album TULUS" width="1000" height="1000"/><div><h2>Teman Hidup</h2><p>TULUS</p><span>Petikan pilihan</span></div></div>
+        <button type="button" class="music-close" aria-label="Tutup pemain muzik"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+        <div class="music-track"><img src="/assets/tulus-album-cover.png" alt="Kulit album TULUS" width="1000" height="1000"/><div><h2>Teman Hidup</h2><p>TULUS</p></div></div>
         <div class="music-transport"><button type="button" class="music-skip" data-skip="-10" aria-label="Undur 10 saat">${skipIcon}</button><button type="button" class="music-play" aria-controls="${audio.id}" aria-label="Mainkan muzik: TULUS — Teman Hidup" aria-pressed="false">${playIcon}</button><button type="button" class="music-skip music-forward" data-skip="10" aria-label="Maju 10 saat">${skipIcon}</button></div>
         <label class="sr-only" for="music-seek-${index}">Kedudukan lagu</label><input id="music-seek-${index}" class="music-seek" type="range" min="0" max="40" step="0.1" value="0" aria-valuetext="0:00 daripada 0:40"/>
         <div class="music-times" aria-hidden="true"><span class="music-elapsed">0:00</span><span class="music-duration">0:40</span></div>

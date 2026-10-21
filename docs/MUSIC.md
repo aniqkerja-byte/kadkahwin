@@ -7,6 +7,7 @@
 - Audio dimuatkan dan cuba dimainkan terus apabila kad dibuka. Jika browser menyekat autoplay bersuara, klik/sentuhan pertama akan mencuba semula; butang muzik juga sentiasa tersedia.
 - Volume awal: 35%. Petikan diulang dan terus dimainkan semasa bertukar halaman. Pilihan pause kekal sepanjang sesi halaman.
 - Satu elemen audio berada di luar aplikasi yang diklon untuk animasi peralihan, supaya muzik tidak bertindih atau bermula semula.
+- Butang muzik berada dalam header mudah alih/desktop dan ikut bergerak bersama halaman semasa peralihan; ia tidak terapung secara fixed atau sticky di atas animasi.
 
 Untuk eksport semula, pasang PyAV dan NumPy pada Python, kemudian jalankan:
 

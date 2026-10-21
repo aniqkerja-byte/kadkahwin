@@ -69,12 +69,14 @@ test('location shows fictional details and has no phone or WhatsApp destinations
 test('mobile menu, keyboard navigation and fictional invitation work', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
-  await expect(page.locator('.mobile-header')).toContainText('DEMO');
+  await expect(page.locator('.mobile-header')).not.toContainText('DEMO');
+  await expect(page.locator('.mobile-header .music-toggle')).toBeVisible();
   await page.getByRole('button', { name: 'Buka menu' }).click();
   await page.locator('nav a[href="#invitation"]').click();
+  await expect(page.locator('main')).toHaveAttribute('data-page', 'invitation');
   await expect(page.locator('main')).not.toHaveAttribute('data-transitioning');
-  await expect(page.locator('.invitation-couple')).toContainText('Sara Amani');
-  await expect(page.locator('.invitation-couple')).toContainText('Adam Hakim');
+  await expect(page.locator('main .invitation-couple')).toContainText('Sara Amani');
+  await expect(page.locator('main .invitation-couple')).toContainText('Adam Hakim');
   await expect(page.locator('#site-nav')).toBeHidden();
   await page.keyboard.press('ArrowRight');
   await expect(page.locator('main')).toHaveAttribute('data-page', 'dresscode');

@@ -31,21 +31,21 @@ const external = `<svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class=
 const pin = `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="small-icon"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>`;
 
 const app = document.querySelector('#app');
-installWeddingMusic();
 app.innerHTML = `
   <header class="mobile-header">
     <a class="wordmark" href="#home" aria-label="Adam dan Sara — Utama"><img src="/assets/monogram.svg" alt="" width="180" height="96" /></a>
-    <span class="demo-badge">DEMO</span><button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu"><span></span><span></span></button>
+    <div class="music-slot" data-music-control></div><button class="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu"><span></span><span></span></button>
   </header>
   <aside class="sidebar">
     <a class="brand" href="#home" aria-label="Adam dan Sara — Utama"><img src="/assets/monogram.svg" alt="A&S" width="180" height="96" /></a>
     <nav id="site-nav" aria-label="Halaman jemputan">${pages.map((page,i)=>`<a href="#${page.id}" data-page="${page.id}"><span class="nav-index">0${i+1}</span>${page.label}<span class="nav-dot" aria-hidden="true"></span></a>`).join('')}</nav>
   </aside>
   <div class="page-shell">
-    <header class="desktop-header"><span>WALIMATULURUS</span><span class="demo-badge">DEMO PORTFOLIO</span></header>
+    <header class="desktop-header"><span>WALIMATULURUS</span><div class="music-slot" data-music-control></div></header>
     <main id="main" tabindex="-1"></main>
   </div>
   <div id="page-announcement" class="sr-only" aria-live="polite"></div>`;
+installWeddingMusic();
 
 const main = document.querySelector('main');
 const pageTransitions = createPageTransitions(main);

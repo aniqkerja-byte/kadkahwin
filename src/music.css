@@ -1,8 +1,6 @@
+.music-slot { display: flex; align-items: center; }
+.mobile-header .music-slot { margin-right: 12px; }
 .music-toggle {
-  position: fixed;
-  top: 24px;
-  right: 230px;
-  z-index: 70;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,6 +28,5 @@
 .is-playing .music-icon span:nth-child(3) { animation-delay: -.8s; }
 .is-playing .music-icon span:nth-child(4) { animation-delay: -.2s; }
 @keyframes music-wave { from { transform: scaleY(.4); } to { transform: scaleY(1); } }
-@media (min-width: 768px) and (max-height: 900px) { .music-toggle { top: 10px; } }
-@media (max-width: 767px) { .music-toggle { top: 12px; right: 114px; min-width: 90px; gap: 8px; padding-inline: 10px; } }
+@media (max-width: 767px) { .music-toggle { min-width: 90px; gap: 8px; padding-inline: 10px; } }
 @media (prefers-reduced-motion: reduce) { .is-playing .music-icon span { animation: none; } }

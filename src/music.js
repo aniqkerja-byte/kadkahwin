@@ -1,5 +1,5 @@
 export function installWeddingMusic() {
-  // Keep one player outside #app so page-transition clones never duplicate it.
+  // Audio persists outside #app; header controls travel with each visual page.
   const audio = document.createElement('audio');
   audio.id = 'wedding-music';
   audio.src = '/assets/teman-hidup-wedding.mp3';
@@ -9,23 +9,29 @@ export function installWeddingMusic() {
   audio.volume = .35;
   audio.hidden = true;
 
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.className = 'music-toggle';
-  button.title = 'TULUS — Teman Hidup';
-  button.setAttribute('aria-controls', audio.id);
-  button.setAttribute('aria-pressed', 'false');
-  button.innerHTML = '<span class="music-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="music-label">Mainkan</span>';
+  const buttons = [...document.querySelectorAll('[data-music-control]')].map(slot => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'music-toggle';
+    button.title = 'TULUS — Teman Hidup';
+    button.setAttribute('aria-controls', audio.id);
+    button.setAttribute('aria-pressed', 'false');
+    button.innerHTML = '<span class="music-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="music-label">Mainkan</span>';
+    slot.append(button);
+    return button;
+  });
 
   let wantsPlayback = false;
   let revision = 0;
   const removeAutoStart = () => document.removeEventListener('click', firstInteraction, true);
   const sync = () => {
     const playing = !audio.paused;
-    button.classList.toggle('is-playing', playing);
-    button.setAttribute('aria-pressed', String(playing));
-    button.setAttribute('aria-label', `${playing ? 'Jeda' : 'Mainkan'} muzik: TULUS — Teman Hidup`);
-    button.querySelector('.music-label').textContent = playing ? 'Muzik' : 'Mainkan';
+    buttons.forEach(button => {
+      button.classList.toggle('is-playing', playing);
+      button.setAttribute('aria-pressed', String(playing));
+      button.setAttribute('aria-label', `${playing ? 'Jeda' : 'Mainkan'} muzik: TULUS — Teman Hidup`);
+      button.querySelector('.music-label').textContent = playing ? 'Muzik' : 'Mainkan';
+    });
   };
   const play = async ({ automatic = false } = {}) => {
     if (!automatic) removeAutoStart();
@@ -40,14 +46,14 @@ export function installWeddingMusic() {
       if (request !== revision) return;
       wantsPlayback = false;
       sync();
-      button.title = 'Tekan untuk cuba mainkan TULUS — Teman Hidup';
+      buttons.forEach(button => { button.title = 'Tekan untuk cuba mainkan TULUS — Teman Hidup'; });
     }
   };
   function firstInteraction(event) {
-    if (!event.isTrusted || button.contains(event.target)) return;
+    if (!event.isTrusted || buttons.some(button => button.contains(event.target))) return;
     void play();
   }
-  button.addEventListener('click', () => {
+  buttons.forEach(button => button.addEventListener('click', () => {
     removeAutoStart();
     if (wantsPlayback) {
       wantsPlayback = false;
@@ -57,15 +63,15 @@ export function installWeddingMusic() {
     } else {
       void play();
     }
-  });
+  }));
   audio.addEventListener('play', sync);
   audio.addEventListener('pause', sync);
   audio.addEventListener('error', () => {
     wantsPlayback = false;
     sync();
-    button.title = 'Muzik belum dapat dimuatkan. Tekan untuk cuba lagi.';
+    buttons.forEach(button => { button.title = 'Muzik belum dapat dimuatkan. Tekan untuk cuba lagi.'; });
   });
-  document.body.append(audio, button);
+  document.body.append(audio);
   document.addEventListener('click', firstInteraction, true);
   sync();
   // Try immediately; browsers that block audible autoplay retain the click fallback.

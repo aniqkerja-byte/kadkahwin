@@ -49,7 +49,7 @@ export const wedding = {
 export const pages = [
   { id: 'home', label: 'Utama', eyebrow: 'Jemputan' },
   { id: 'invitation', label: 'Jemputan', eyebrow: 'Walimatulurus' },
-  { id: 'dresscode', label: 'Event Details', eyebrow: 'Maklumat majlis' },
+  { id: 'dresscode', label: 'Dresscode', eyebrow: 'Inspirasi gaya' },
   { id: 'location', label: 'Lokasi', eyebrow: 'Lokasi majlis' },
   { id: 'rsvp', label: 'RSVP', eyebrow: 'Tempat untuk anda' },
   { id: 'note', label: '🤍', eyebrow: 'Daripada kami' },

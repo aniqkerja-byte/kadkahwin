@@ -24,23 +24,16 @@ test('horizontal transition handles interrupted navigation without stale pages o
   expect(errors).toEqual([]);
 });
 
-test('outgoing Event Details preserves its scroll position and reentry starts at the top', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 600 });
+test('dresscode sketch filter stays attached in the outgoing transition layer', async ({ page }) => {
   await page.goto('/#dresscode');
-  await expect(page.locator('main')).not.toHaveAttribute('data-transitioning');
-  const offset = await page.locator('main [data-page-scroll]').evaluate(element => {
-    element.scrollTop = 200;
-    return element.scrollTop;
-  });
-  expect(offset).toBeGreaterThan(0);
-  await page.evaluate(() => { location.hash = 'location'; });
+  await expect(page.locator('.filter-defs filter#dresscode-sketch')).toHaveCount(1);
+  await page.locator('nav a[href="#location"]').click();
   const outgoing = page.locator('.site-transition-old');
   await expect(outgoing).toHaveCount(1);
-  expect(await outgoing.locator('[data-page-scroll]').evaluate(element => element.scrollTop)).toBe(offset);
+  await expect(outgoing.locator('.filter-defs filter#dresscode-sketch')).toHaveCount(1);
+  const filter = await outgoing.locator('.piece-art').first().evaluate(element => getComputedStyle(element).filter);
+  expect(filter).toContain('dresscode-sketch');
   await expect(page.locator('main')).toHaveAttribute('data-page', 'location');
-  await page.evaluate(() => { location.hash = 'dresscode'; });
-  await expect(page.locator('main')).toHaveAttribute('data-page', 'dresscode');
-  expect(await page.locator('main [data-page-scroll]').evaluate(element => element.scrollTop)).toBe(0);
 });
 
 test('reduced motion and resize settle a transition with the correct destination', async ({ page }) => {
@@ -58,21 +51,6 @@ test('reduced motion and resize settle a transition with the correct destination
   await expect(page.locator('.site-transition-layer')).toHaveCount(0);
   await expect(page.locator('main')).not.toHaveAttribute('data-transitioning');
   expect(await page.evaluate(() => document.documentElement.scrollHeight <= innerHeight)).toBe(true);
-});
-
-test('Event Details headings keep their font size in incoming and outgoing visual clones', async ({ page }) => {
-  await page.goto('/#home');
-  await expect(page.locator('main')).not.toHaveAttribute('data-transitioning');
-  await page.evaluate(() => { location.hash = 'dresscode'; });
-  const incoming = page.locator('.site-transition-new .event-section-title');
-  await expect(incoming).toHaveCount(3);
-  expect(await incoming.evaluateAll(elements => elements.map(el => getComputedStyle(el).fontSize))).toEqual(['26px', '26px', '26px']);
-  await expect(page.locator('main')).not.toHaveAttribute('data-transitioning');
-  expect(await page.locator('main .event-section-title').evaluateAll(elements => elements.map(el => getComputedStyle(el).fontSize))).toEqual(['26px', '26px', '26px']);
-  await page.evaluate(() => { location.hash = 'location'; });
-  const outgoing = page.locator('.site-transition-old .event-section-title');
-  await expect(outgoing).toHaveCount(3);
-  expect(await outgoing.evaluateAll(elements => elements.map(el => getComputedStyle(el).fontSize))).toEqual(['26px', '26px', '26px']);
 });
 
 test('first home reveal waits for both name fonts instead of showing fallback text', async ({ page }) => {

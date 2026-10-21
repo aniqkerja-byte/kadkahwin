@@ -5,7 +5,8 @@ Kad jemputan perkahwinan interaktif menggunakan Vite dan JavaScript. Demo ini me
 ## Ciri
 
 - Enam halaman dengan peralihan mendatar, navigasi papan kekunci, swipe dan menu mudah alih.
-- Jemputan, atur cara, dress code, lokasi contoh, RSVP dan surat penutup.
+- Jemputan, dress code interaktif, lokasi contoh, RSVP dan surat penutup.
+- 15 item pakaian dan aksesori boleh diseret menggunakan tetikus atau sentuhan. Tab Wanita/Lelaki pada telefon, anak panah untuk alih item dan Escape untuk pulihkan kedudukan asal. Susunan kekal semasa bertukar halaman dalam sesi yang sama.
 - Mod jemputan pihak lelaki dan perempuan.
 - Font dihoskan sendiri dan sokongan reduced motion.
 - RSVP divalidasi dan disimulasikan dalam memori pelayar sahaja. Tiada API, Google Sheets, credentials, localStorage atau sessionStorage.
@@ -39,6 +40,6 @@ Selepas domain demo ditetapkan, gunakan URL mutlak domain itu untuk metadata `og
 
 ## Kandungan dan aset
 
-Edit `src/content.js` untuk butiran majlis dan `src/config/` untuk teks jemputan. Semua aset dalam `public/assets/` ialah hiasan vektor atau kad perkongsian demo; tiada foto klien disertakan.
+Edit `src/content.js` untuk butiran majlis dan `src/config/` untuk teks jemputan. Aset dalam `public/assets/` merangkumi hiasan vektor, kad perkongsian demo dan atlas pakaian janaan untuk lookbook interaktif; tiada foto klien disertakan. Asal aset pakaian direkodkan dalam [docs/ASSETS.md](docs/ASSETS.md).
 
 Repo demo mempunyai sejarah Git baharu. Repo, konfigurasi deployment, domain dan sejarah projek klien dikekalkan secara berasingan.

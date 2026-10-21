@@ -7,7 +7,8 @@ import '@fontsource/dm-sans/latin-400.css';
 import '@fontsource/dm-sans/latin-500.css';
 import './styles.css';
 import './fullscreen.css';
-import './event-details.css';
+import './dresscode.css';
+import { dresscodeBoard, bindDresscode } from './dresscode.js';
 import './location.css';
 import './rsvp.css';
 import './demo.css';
@@ -49,6 +50,7 @@ let draft = { name: '', attendance: '', pax: '1' };
 let confirmation = null;
 let rsvpPending = false;
 let rsvpError = '';
+let cleanupPage = () => {};
 let fitFrame = 0;
 let typographyReady = false;
 
@@ -70,7 +72,7 @@ function queueFitActivePage() {
 }
 const scrollNavigation = installScrollNavigation({
   container: main,
-  menuIsOpen: () => document.querySelector('.menu-toggle').getAttribute('aria-expanded') === 'true',
+  menuIsOpen: () => document.querySelector('.menu-toggle').getAttribute('aria-expanded') === 'true' || Boolean(main.querySelector('.outfit-board.is-dragging')),
   navigate: direction => {
     const next = activeIndex + direction;
     if (next < 0 || next >= pages.length) return false;
@@ -113,24 +115,10 @@ function invitationPage() {
   </section>`;
 }
 
-function eventDetailsPage() {
-  const details = wedding.eventDetails;
-  const timelineIcons = [
-    '<circle cx="8" cy="6" r="2"/><circle cx="16" cy="7" r="2"/><path d="M3 19v-6c0-4 10-4 10 0v6M14 11c3-1 7 1 7 4v4M6 19v-4m4 4v-4m7 4v-4"/>',
-    '<circle cx="8" cy="13" r="5"/><circle cx="16" cy="13" r="5"/><path d="m14 4 2-2 2 2-2 3Z"/>',
-    '<circle cx="13" cy="12" r="7"/><path d="M2 3v5c0 2 4 2 4 0V3M4 3v18M21 3v18M21 3c-3 2-3 7 0 8"/>',
-  ];
-  return `<section class="page event-details-page" data-page-scroll tabindex="0" aria-labelledby="page-title">
-    <div class="event-details-content">
-      <h1 id="page-title" class="event-section-title" tabindex="-1">Dress Code</h1>
-      <div class="event-dress-code"><p>${details.dressCode}</p><p>${details.dressCodeNote}</p></div>
-      <div class="event-details-columns">
-        <section class="event-schedule" aria-labelledby="schedule-title"><h2 id="schedule-title" class="event-section-title">Atur Cara Majlis</h2>
-          <dl class="event-timeline">${details.schedule.map((item, index) => `<div class="event-schedule-entry"><dt><span class="event-timeline-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">${timelineIcons[index]}</svg></span>${item.time}</dt><dd>${item.title}${item.description ? `<p class="event-schedule-description">${item.description}</p>` : ''}</dd></div>`).join('')}</dl>
-        </section>
-        <section class="event-menu" aria-labelledby="menu-title"><div class="event-menu-heading"><img class="event-menu-flower" src="/assets/flowers.svg" alt="" aria-hidden="true" width="1086" height="1448" /><h2 id="menu-title" class="event-section-title">Hidangan</h2></div><ul class="event-menu-items">${details.menu.map(item => `<li>${item}</li>`).join('')}</ul></section>
-      </div>
-    </div>
+function dresscodePage() {
+  return `<section class="page dresscode-page" aria-labelledby="page-title"><h1 id="page-title" class="sr-only" tabindex="-1">Dresscode</h1><p class="dresscode-style">Tradisional / Smart Casual</p>
+    ${dresscodeBoard()}
+    <p class="dresscode-note">Apa sahaja warna pilihan anda, <strong>kecuali putih dan silver.</strong></p>
   </section>`;
 }
 
@@ -175,7 +163,7 @@ function notePage() {
   return `<section class="page note-page" aria-labelledby="page-title"><h1 id="page-title" class="sr-only" tabindex="-1">Pesanan</h1><div class="scrapbook"><article class="letter">${wedding.closing.map(p=>`<p>${p}</p>`).join('')}<p class="letter-signoff">🤍 Adam & Sara</p></article><div class="memory-photos">${notePhotos.map((photo,i)=>`<figure class="memory memory-${i+1} memory-${photo}"><picture><source media="(max-width: 767px)" srcset="${notePortraitSource(photo, true)}" /><img src="${notePortraitSource(photo, false)}" alt="Ilustrasi kenangan rekaan ${i+1}" loading="eager" decoding="async"/></picture></figure>`).join('')}</div></div></section>`;
 }
 
-const templates = { home: homePage, invitation: invitationPage, dresscode: eventDetailsPage, location: locationPage, rsvp: rsvpPage, note: notePage };
+const templates = { home: homePage, invitation: invitationPage, dresscode: dresscodePage, location: locationPage, rsvp: rsvpPage, note: notePage };
 function setMenu(open) {
   document.querySelector('.menu-toggle').setAttribute('aria-expanded', String(open));
   document.querySelector('.menu-toggle').setAttribute('aria-label', open ? 'Tutup menu' : 'Buka menu');
@@ -197,6 +185,8 @@ function renderPage({ focus = false, immediate = false } = {}) {
 }
 
 function commitPage({ focus = false } = {}) {
+  cleanupPage();
+  cleanupPage = () => {};
   const hash = location.hash.slice(1);
   activeIndex = Math.max(0, pages.findIndex(p=>p.id===hash));
   if (hash && !pages.some(p=>p.id===hash)) history.replaceState(null, '', '#home');
@@ -218,6 +208,7 @@ function commitPage({ focus = false } = {}) {
   window.scrollTo({ top: 0, behavior: 'instant' });
   if (focus) scrollNavigation.reset();
   if (page.id === 'rsvp') bindRsvp();
+  if (page.id === 'dresscode') cleanupPage = bindDresscode();
   main.querySelectorAll('img').forEach(image => image.addEventListener('load', queueFitActivePage, { once: true }));
   fitActivePage();
   queueFitActivePage();

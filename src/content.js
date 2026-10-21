@@ -7,9 +7,9 @@ export const wedding = {
   day: 'Ahad',
   time: '11.00 pagi – 4.30 petang',
   timezone: 'Asia/Kuala_Lumpur',
-  venue: 'Dewan Seri Impian',
+  venue: 'Masjid Negara',
   location: 'Kuala Lumpur',
-  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Kuala%20Lumpur',
+  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Masjid%20Negara%20Kuala%20Lumpur',
   assistanceHeading: 'Untuk Sebarang Bantuan / Pertanyaan Berkaitan Majlis',
   parents: {
     groom: ['Ismail Rahman', 'Mariam Abdullah'],

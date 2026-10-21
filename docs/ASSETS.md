@@ -1,5 +1,15 @@
 # Aset visual
 
+## Ilustrasi masjid gold (lokasi)
+
+Ilustrasi masjid yang dibekalkan pengguna ditukar daripada biru kepada gold dengan latar telus melalui built-in imagegen. Bentuk ilustrasi asal dikekalkan; nama lokasi demo kini Masjid Negara, Kuala Lumpur, dengan pautan carian peta yang sepadan.
+
+- Imej asal: `references/venue/mosque-user-original-v1.png`.
+- Hasil edit: `references/venue/mosque-gold-source-v1.png`.
+- Aset web: `public/assets/mosque-gold-v1.webp` (1200 × 400).
+- [Prompt edit](mosque-gold-v1-prompt.md).
+- Eksport semula: `node scripts/export-venue.mjs` (ubah saiz/format sahaja, kekalkan warna dan alpha).
+
 ## Cover pemain muzik
 
 `public/assets/tulus-album-cover.png` ialah imej cover TULUS 1000 × 1000 yang dibekalkan pengguna. Imej asal disalin tanpa suntingan untuk panel muzik Teman Hidup.

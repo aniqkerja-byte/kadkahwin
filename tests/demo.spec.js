@@ -54,13 +54,13 @@ test('RSVP validates and simulates both responses without transmitting or storin
   expect(await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length }))).toEqual({ local: 0, session: 0 });
 });
 
-test('location shows fictional details and has no phone or WhatsApp destinations', async ({ page }) => {
+test('location shows selected venue and has no phone or WhatsApp destinations', async ({ page }) => {
   await page.goto('/#location');
-  await expect(page.locator('.location-details')).toContainText('Dewan Seri Impian');
+  await expect(page.locator('.location-details')).toContainText('Masjid Negara');
   await expect(page.locator('.contact')).toHaveCount(2);
   await expect(page.locator('.contact-number').first()).toContainText('Contoh sahaja');
   await expect(page.locator('a[href^="https://wa.me/"], a[href^="tel:"]')).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'Buka Google Maps' })).toHaveAttribute('href', 'https://www.google.com/maps/search/?api=1&query=Kuala%20Lumpur');
+  await expect(page.getByRole('link', { name: 'Buka Google Maps' })).toHaveAttribute('href', 'https://www.google.com/maps/search/?api=1&query=Masjid%20Negara%20Kuala%20Lumpur');
   await page.goto('/?invite=lelaki#location');
   await expect(page.locator('.contact')).toHaveCount(1);
   await expect(page.locator('.contact')).toContainText('Wakil Keluarga Adam');

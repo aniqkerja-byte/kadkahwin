@@ -137,7 +137,7 @@ function locationPage() {
   return `<section class="page location-page" data-page-scroll tabindex="0" aria-labelledby="page-title">
     <div class="location-content">
       <div class="section-heading"><p class="eyebrow">Lokasi majlis</p><h1 id="page-title" class="sr-only" tabindex="-1">Lokasi majlis</h1></div>
-      <img class="venue-lineart" src="/assets/venue.svg" alt="Ilustrasi dewan rekaan untuk demo" width="760" height="305" />
+      <img class="venue-lineart" src="/assets/mosque-gold-v1.webp" alt="Ilustrasi masjid berwarna gold" width="1200" height="400" />
       <div class="location-details"><h2>${wedding.venue}</h2><p>${wedding.location}</p><a class="button" href="${wedding.mapsUrl}" target="_blank" rel="noopener noreferrer">${pin}Buka Google Maps${external}</a></div>
       <div class="contacts"><h2 class="assistance-heading">${wedding.assistanceHeading}</h2><div class="contact-grid" data-count="${contacts.length}">${contacts.map(c=>`<div class="contact"><span class="contact-name">${c.name}</span><span class="contact-number">${c.phone} · Contoh sahaja</span></div>`).join('')}</div></div>
     </div>
@@ -201,12 +201,6 @@ function commitPage({ focus = false } = {}) {
     else link.removeAttribute('aria-current');
   });
   main.innerHTML = templates[page.id]();
-  if (page.id === 'location') {
-    const illustration = main.querySelector('.venue-lineart');
-    illustration.src = '/assets/venue.svg';
-    illustration.width = 760;
-    illustration.height = 305;
-  }
   main.dataset.page = page.id;
   setMenu(false);
   window.scrollTo({ top: 0, behavior: 'instant' });

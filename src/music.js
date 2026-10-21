@@ -16,7 +16,7 @@ export function installWeddingMusic() {
     button.title = 'TULUS — Teman Hidup';
     button.setAttribute('aria-controls', audio.id);
     button.setAttribute('aria-pressed', 'false');
-    button.innerHTML = '<span class="music-icon" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="music-label">Mainkan</span>';
+    button.innerHTML = '<svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13M9 9l11-2"/><ellipse cx="6" cy="18" rx="3" ry="2"/><ellipse cx="17" cy="16" rx="3" ry="2"/></svg><span class="music-label">Mainkan</span>';
     slot.append(button);
     return button;
   });
@@ -30,6 +30,7 @@ export function installWeddingMusic() {
       button.classList.toggle('is-playing', playing);
       button.setAttribute('aria-pressed', String(playing));
       button.setAttribute('aria-label', `${playing ? 'Jeda' : 'Mainkan'} muzik: TULUS — Teman Hidup`);
+      button.title = `${playing ? 'Jeda' : 'Mainkan'} muzik · TULUS — Teman Hidup`;
       button.querySelector('.music-label').textContent = playing ? 'Muzik' : 'Mainkan';
     });
   };

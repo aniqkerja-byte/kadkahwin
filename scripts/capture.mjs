@@ -9,6 +9,7 @@ try {
   for (const id of ['home', 'dresscode', 'location', 'rsvp', 'note']) {
     await page.goto(`http://127.0.0.1:5173/#${id}`);
     await page.evaluate(() => document.fonts.ready);
+    await page.waitForFunction(() => !document.querySelector('main').hasAttribute('data-transitioning'));
     await page.waitForFunction(() => [...document.querySelectorAll('main img')].every(image => image.complete));
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: `review/desktop-${id}.png`, fullPage: true });
@@ -17,6 +18,7 @@ try {
   for (const id of ['home', 'dresscode', 'note', 'rsvp']) {
     await page.goto(`http://127.0.0.1:5173/#${id}`);
     await page.evaluate(() => document.fonts.ready);
+    await page.waitForFunction(() => !document.querySelector('main').hasAttribute('data-transitioning'));
     await page.waitForFunction(() => [...document.querySelectorAll('main img')].every(image => image.complete));
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.screenshot({ path: `review/mobile-${id}.png`, fullPage: true });

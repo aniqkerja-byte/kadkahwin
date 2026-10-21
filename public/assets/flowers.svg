@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="180" height="200" viewBox="0 0 180 200" fill="none" stroke="#16223c" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="200" viewBox="0 0 180 200" fill="none" stroke="#e8c985" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
 <title>Two hand-drawn daisies</title>
 <g id="stems">
 <path stroke-width="1.85" d="M73 104 C79 121 87 143 88 159 C89 173 89 184 89 191"/>
@@ -21,7 +21,7 @@
 <path stroke-width="1.8" d="M-8 -3 C-6 -9 5 -10 9 -4 C12 1 6 8 0 8 C-6 9 -11 3 -8 -3Z"/>
 <path stroke-width="2.5" d="M-7 1 Q-6 5 -3 6 M5 -5 L8 -2 M1 6 L4 5"/>
 <path stroke-width="1.15" d="M-3 -3 L-2 -1 M3 -2 L4 0 M0 2 L1 3"/>
-<path fill="#16223c" stroke="none" d="M-6 9 Q0 7 6 9 L3 14 Q0 11 -3 14Z"/>
+<path fill="#e8c985" stroke="none" d="M-6 9 Q0 7 6 9 L3 14 Q0 11 -3 14Z"/>
 </g>
 <g id="daisy-small" transform="translate(117 49) rotate(18) scale(0.8 0.7)">
 <path stroke-width="1.7" transform="rotate(2)" d="M-3 -6 C-8 -13 -5 -35 1 -31 C7 -30 8 -15 3 -6"/>
@@ -37,6 +37,6 @@
 <path stroke-width="1.8" d="M-8 -3 C-6 -9 5 -10 9 -4 C12 1 6 8 0 8 C-6 9 -11 3 -8 -3Z"/>
 <path stroke-width="2.5" d="M-7 1 Q-6 5 -3 6 M5 -5 L8 -2 M1 6 L4 5"/>
 <path stroke-width="1.15" d="M-3 -3 L-2 -1 M3 -2 L4 0 M0 2 L1 3"/>
-<path fill="#16223c" stroke="none" d="M-6 9 Q0 7 6 9 L3 14 Q0 11 -3 14Z"/>
+<path fill="#e8c985" stroke="none" d="M-6 9 Q0 7 6 9 L3 14 Q0 11 -3 14Z"/>
 </g>
 </svg>

@@ -1,1 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#E5E4E2"/><rect x="28" y="28" width="1144" height="574" fill="none" stroke="#16223c"/><g fill="#16223c" text-anchor="middle"><text x="600" y="170" font-family="sans-serif" font-size="18" letter-spacing="7">KADKAHWIN · DEMO PORTFOLIO</text><text x="600" y="340" font-family="Georgia,serif" font-size="100" font-style="italic">Adam &amp; Sara</text><text x="600" y="425" font-family="Georgia,serif" font-size="28">14 Februari 2027 · Kuala Lumpur</text><text x="600" y="510" font-family="sans-serif" font-size="16">Jemputan interaktif dengan kandungan rekaan</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="card"><stop stop-color="#641f36"/><stop offset="1" stop-color="#310918"/></radialGradient>
+    <linearGradient id="foil" x2="1" y2=".35"><stop stop-color="#c99a4c"/><stop offset=".3" stop-color="#e8c985"/><stop offset=".5" stop-color="#fff0bf"/><stop offset=".7" stop-color="#d4ad64"/><stop offset="1" stop-color="#f1d89e"/></linearGradient>
+    <pattern id="dust" width="131" height="109" patternUnits="userSpaceOnUse"><circle cx="19" cy="33" r=".65" fill="#ffe9ac" opacity=".35"/><circle cx="73" cy="81" r=".5" fill="#dfba72" opacity=".25"/></pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#card)"/>
+  <rect width="1200" height="630" fill="url(#dust)"/>
+  <rect x="24" y="24" width="1152" height="582" fill="none" stroke="#d8b66c" stroke-opacity=".4"/>
+  <rect x="30" y="30" width="1140" height="570" fill="none" stroke="#d8b66c" stroke-opacity=".15"/>
+  <g fill="url(#foil)" text-anchor="middle">
+    <text x="600" y="160" font-family="sans-serif" font-size="16" letter-spacing="7">KADKAHWIN · DEMO PORTFOLIO</text>
+    <text x="600" y="325" font-family="Georgia,serif" font-size="100" font-style="italic">Adam &amp; Sara</text>
+    <text x="600" y="418" font-family="Georgia,serif" font-size="28">14 Februari 2027 · Kuala Lumpur</text>
+    <text x="600" y="515" font-family="sans-serif" font-size="15">Jemputan interaktif dengan kandungan rekaan</text>
+    <path d="m600 70 3 10 10 3-10 3-3 10-3-10-10-3 10-3Zm-480 235 2 7 7 2-7 2-2 7-2-7-7-2 7-2Zm960 0 2 7 7 2-7 2-2 7-2-7-7-2 7-2Z"/>
+  </g>
+  <path d="M480 456h240" stroke="#d8b66c" stroke-opacity=".4"/>
+</svg>

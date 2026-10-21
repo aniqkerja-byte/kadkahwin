@@ -1,0 +1,103 @@
+/* Burgundy card stock, warm gold ink and a restrained foil finish. */
+:root {
+  --paper: #420f23;
+  --ink: #e8c985;
+  --muted: #c9ac7b;
+  --rule: #d8b66c40;
+  --foil: linear-gradient(110deg, #c99a4c 0%, #e8c985 24%, #fff0bf 40%, #d4ad64 53%, #f1d89e 68%, #c99a4c 100%);
+  --card-background: radial-gradient(ellipse at 60% 40%, #641f36 0%, transparent 70%), linear-gradient(125deg, #310918, #4c142a 45%, #360a1c);
+  color: var(--ink);
+  background: var(--paper);
+  color-scheme: dark;
+}
+
+body { background: var(--paper); }
+#app, .site-transition-layer { background: var(--card-background); }
+#app { position: relative; isolation: isolate; }
+#app::before, .site-transition-layer::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid #d8b66c32;
+  box-shadow: inset 0 0 0 4px #e8c98504;
+  pointer-events: none;
+  z-index: 15;
+}
+#app::after, .site-transition-layer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, #ffe9ac 0 .65px, transparent 1.1px),
+    radial-gradient(circle, #dfba72 0 .45px, transparent .9px),
+    radial-gradient(ellipse at 10% 8%, #f7d7931c, transparent 32%),
+    radial-gradient(ellipse at 92% 90%, #f7d79312, transparent 28%);
+  background-size: 131px 157px, 79px 109px, 100% 100%, 100% 100%;
+  background-position: 19px 33px, 43px 17px, 0 0, 0 0;
+  opacity: .3;
+  pointer-events: none;
+  z-index: 14;
+}
+.sidebar, .home-page, .mobile-header { background: transparent; }
+.sidebar.is-open { background: var(--card-background); border: 1px solid var(--rule); }
+.brand img { mix-blend-mode: normal; opacity: 1; }
+.couple-names { color: var(--ink); }
+.sidebar nav a, .desktop-header, .section-heading .eyebrow,
+.form-field label>span, fieldset legend>span, .contact-number,
+.location-details .map-caption, .outfit-tabs button, .note-bottom,
+.event-summary .venue-region, .parents .eyebrow { color: var(--muted); }
+.sidebar nav a:hover, .sidebar nav a[aria-current], .outfit-tabs button[aria-pressed='true'] { color: var(--ink); }
+.desktop-header span:last-child { color: var(--ink); }
+.home-rsvp, .text-link { border-color: var(--rule); }
+.button, .skip-link {
+  color: #3b0d20;
+  background: var(--foil);
+  border: 1px solid #f5dd9d80;
+  box-shadow: inset 0 1px 0 #fff4cd75, 0 4px 18px #18030c28;
+}
+.button:hover { background: var(--foil); box-shadow: inset 0 1px 0 #fff4cd, 0 5px 22px #e8c9851c; }
+button:focus-visible, a:focus-visible, input:focus-visible,
+.attendance-options input:focus-visible+span { outline-color: #ffe8ac; }
+.form-field input:not([type=radio]) { background: #ffffff05; border-color: var(--rule); color: var(--ink); caret-color: var(--ink); }
+.form-field input::placeholder { color: #c9ac7bbd; }
+.pax-input, .attendance-options label>span { border-color: var(--rule); }
+.attendance-options input:checked+span { background: #e8c9850d; border-color: var(--ink); }
+.radio-dot { border-color: var(--muted); }
+.field-error { color: #ffbdad; }
+.form-field input[aria-invalid=true] { border-color: #ffbdad; }
+.demo-notice { color: var(--muted); }
+.note-page .letter {
+  color: var(--ink);
+  background-color: #4a1429;
+  background-image: url('/assets/letter-paper.svg'), linear-gradient(145deg, #571d32, #3c1022 60%, #4a172a);
+  border-color: #caa76870;
+  outline-color: #e8c98540;
+  box-shadow: inset 0 0 28px #1a020d33, 0 8px 28px #16020a30;
+}
+.note-page .memory img { filter: none; opacity: .92; }
+.piece-art { filter: url(#dresscode-sketch); }
+.dress-piece:hover .piece-art, .dress-piece:focus-visible .piece-art { filter: url(#dresscode-sketch) drop-shadow(0 3px 3px #e8c98522); }
+.dress-piece.is-dragging .piece-art { filter: url(#dresscode-sketch) drop-shadow(0 8px 5px #e8c98533); }
+.site-transition-new { box-shadow: -18px 0 34px #18030c24, 18px 0 34px #18030c24; }
+
+@supports (background-clip: text) {
+  .couple-names>span, .invitation-couple-name, .letter-signoff,
+  .rsvp-page h1, .location-details h2 {
+    color: transparent;
+    background-image: var(--foil);
+    background-size: 220% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    padding-block: .08em;
+    margin-block: -.08em;
+  }
+  .couple-names>span { animation: gold-foil 12s ease-in-out infinite alternate; }
+}
+@keyframes gold-foil { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+@media (max-width: 767px) {
+  #app::before, .site-transition-layer::before { inset: 8px; border-color: #d8b66c24; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #app::after, .site-transition-layer::after, .couple-names>span,
+  .invitation-couple-name, .letter-signoff, .rsvp-page h1, .location-details h2 { animation: none; }
+}

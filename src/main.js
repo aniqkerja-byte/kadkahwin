@@ -12,6 +12,7 @@ import { dresscodeBoard, bindDresscode } from './dresscode.js';
 import './location.css';
 import './rsvp.css';
 import './demo.css';
+import './theme.css';
 import { pages as allPages, wedding } from './content.js';
 import { brideSite, siteConfig } from './config/index.js';
 import { submitRsvp, validateRsvp } from './rsvp.js';

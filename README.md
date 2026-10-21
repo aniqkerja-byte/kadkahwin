@@ -8,7 +8,8 @@ Kad jemputan perkahwinan interaktif menggunakan Vite dan JavaScript. Demo ini me
 - Jemputan, dress code interaktif, lokasi contoh, RSVP dan surat penutup.
 - 15 item pakaian dan aksesori boleh diseret menggunakan tetikus atau sentuhan. Tab Wanita/Lelaki pada telefon, anak panah untuk alih item dan Escape untuk pulihkan kedudukan asal. Susunan kekal semasa bertukar halaman dalam sesi yang sama.
 - Mod jemputan pihak lelaki dan perempuan.
-- Font dihoskan sendiri dan sokongan reduced motion.
+- Tema burgundy dengan tulisan gold, kesan foil dan kilauan halus.
+- Font dihoskan sendiri dan sokongan reduced motion; animasi kilauan dihentikan mengikut tetapan pengguna.
 - RSVP divalidasi dan disimulasikan dalam memori pelayar sahaja. Tiada API, Google Sheets, credentials, localStorage atau sessionStorage.
 - Nombor hubungan hanyalah placeholder; pautan WhatsApp dinyahaktifkan.
 

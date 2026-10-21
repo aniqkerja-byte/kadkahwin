@@ -1,8 +1,27 @@
 # Kadkahwin — Demo Portfolio
 
-Kad jemputan perkahwinan interaktif menggunakan Vite dan JavaScript. Demo ini menggunakan pasangan rekaan **Adam & Sara**, keluarga rekaan, ilustrasi vektor dan butiran majlis contoh.
+Koleksi dua kad jemputan perkahwinan menggunakan Vite dan JavaScript. Semua pasangan, keluarga dan butiran majlis adalah rekaan untuk portfolio.
 
-## Ciri
+| URL | Template |
+| --- | --- |
+| `/` dan hash asal | **Klasik Elegan** — Adam & Sara, burgundy dan gold |
+| `/editorial/` | **JANJI** — Hana Sofea & Danish Hakimi, ivory dan olive |
+| `/koleksi/` | Katalog kedua-dua template dengan screenshot desktop dan telefon |
+
+Versi burgundy asal disimpan pada tag `template/burgundy-v1` (commit `9012aea`). Fail halaman, gaya, kandungan dan navigasi burgundy tidak diubah ketika JANJI ditambah.
+
+## JANJI
+
+- Jemputan editorial dengan scroll menegak, fotografi pasangan rekaan yang konsisten dan font Bodoni Moda / Manrope dihoskan sendiri.
+- Galeri lightbox dengan kawalan papan kekunci, atur cara, swatch pakaian, peta dan muat turun kalendar `.ics`.
+- Countdown menggunakan waktu Malaysia: 22 Mei 2027, 11.00 pagi–4.30 petang; mesej berubah semasa/selepas majlis.
+- Pemain muzik inline dengan petikan TULUS sedia ada, autoplay apabila dibenarkan, fallback interaksi dan pilihan jeda sepanjang lawatan.
+- RSVP disimulasikan dalam memori dengan validasi bersama daripada `src/rsvp.js`; tiada penghantaran atau simpanan data.
+- Animasi pembukaan 2.4 saat dan reveal seksyen yang menghormati reduced motion. Kandungan kekal boleh digunakan jika foto gagal dimuatkan.
+- Halaman masuk: `editorial/index.html`; gaya/fungsi: `src/editorial/`; katalog: `koleksi/index.html` dan `src/catalog/`.
+- [Dokumentasi JANJI](docs/JANJI.md) dan [prompt fotografi](docs/janji-image-prompts.md).
+
+## Ciri Klasik Elegan
 
 - Enam halaman dengan peralihan mendatar, navigasi papan kekunci, swipe dan menu mudah alih.
 - Jemputan, dress code interaktif, lokasi contoh, RSVP dan surat penutup.

@@ -1,5 +1,13 @@
 # Aset visual
 
+## Fotografi JANJI dan pratonton katalog
+
+Empat foto pasangan Melayu dewasa rekaan dijana melalui **built-in imagegen**. Foto hero digunakan sebagai rujukan identiti dan pakaian untuk tiga foto lain. Sumber PNG disimpan dalam `references/editorial/`; WebP responsif 480, 960 dan 1600px dalam `public/assets/editorial/`. [Prompt tepat bagi setiap foto](janji-image-prompts.md).
+
+Eksport mekanikal tanpa perubahan visual: `node scripts/export-editorial.mjs`.
+
+Screenshot desktop/telefon kedua-dua template dalam `public/assets/catalog/` diambil daripada halaman sebenar, bukan mockup janaan. Jana semula semasa Vite berjalan: `node scripts/capture-catalog.mjs`. `PREVIEW_URL` boleh digunakan untuk memilih URL preview production.
+
 ## Ilustrasi masjid gold v3 (aktif)
 
 `public/assets/mosque-gold-user-v3.png` ialah imej terbaru pengguna, `Elegant Golden Mosque Line Art.png` (2172 × 724). Fail disalin terus tanpa suntingan untuk halaman lokasi Masjid Negara.

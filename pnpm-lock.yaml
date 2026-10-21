@@ -11,6 +11,9 @@ importers:
       '@fontsource/allura':
         specifier: ^5.3.0
         version: 5.3.0
+      '@fontsource/bodoni-moda':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@fontsource/cormorant-garamond':
         specifier: ^5.3.0
         version: 5.3.0
@@ -18,6 +21,9 @@ importers:
         specifier: ^5.3.0
         version: 5.3.0
       '@fontsource/great-vibes':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource/manrope':
         specifier: ^5.3.0
         version: 5.3.0
     devDependencies:
@@ -33,6 +39,9 @@ packages:
   '@fontsource/allura@5.3.0':
     resolution: {integrity: sha512-UqloNNVxl03+psvtIXCYuo7/v2mD9XmX2HGiczhK6NmDDwbFJJDjrbHZ5tpNuVXKsMEQPc46tZu3hewYN82/YA==}
 
+  '@fontsource/bodoni-moda@5.3.0':
+    resolution: {integrity: sha512-Wt2XBCHivYxkTP3ydq/Ax+7VshwsOh/6ayA5om2t+yClCkGwLPj2Mi6OnyMANjyLcqDUWs4rlOHnc8SBLf6/pA==}
+
   '@fontsource/cormorant-garamond@5.3.0':
     resolution: {integrity: sha512-weuGsCirGVWBWqpt6YUp0yLThTe4G8YO45noq8wxeJCRvEpq5lFrxNMFSTxcyOyV5k5otzJ8guDzYegdYlcLMQ==}
 
@@ -41,6 +50,9 @@ packages:
 
   '@fontsource/great-vibes@5.3.0':
     resolution: {integrity: sha512-1w60cXzXnC9V4y943po8044O1mqRQBiTTK75h7OpZE+1VQtx+KlAAzoIyEE5KNzu05gUpxaCQg7cbL7ITSwegQ==}
+
+  '@fontsource/manrope@5.3.0':
+    resolution: {integrity: sha512-obJ1Dv3+uCA6HlHgW8u4BGYxJR9In2HW7gjJhlflEvkrj1X1iSEwu0fToL+JYGC/FEKFfIz1sBuPduvcL2gIAA==}
 
   '@oxc-project/types@0.154.0':
     resolution: {integrity: sha512-KYOUGQFlLWR+s4QMV2Q9ko38TZm7EdO87Qm7rvZLqk/webse/cDjtyxKhg/47l0byCbs/k46LT8qc4PKjAikzA==}
@@ -327,11 +339,15 @@ snapshots:
 
   '@fontsource/allura@5.3.0': {}
 
+  '@fontsource/bodoni-moda@5.3.0': {}
+
   '@fontsource/cormorant-garamond@5.3.0': {}
 
   '@fontsource/dm-sans@5.3.0': {}
 
   '@fontsource/great-vibes@5.3.0': {}
+
+  '@fontsource/manrope@5.3.0': {}
 
   '@oxc-project/types@0.154.0': {}
 

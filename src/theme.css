@@ -40,7 +40,7 @@ body { background: var(--paper); }
 }
 .sidebar, .home-page, .mobile-header { background: transparent; }
 .sidebar.is-open { background: var(--card-background); border: 1px solid var(--rule); }
-.brand { width: 88px; margin-bottom: 26px; }
+.brand { width: 76px; margin-bottom: 38px; }
 .brand img { width: 100%; mix-blend-mode: normal; opacity: 1; }
 .couple-names { color: var(--ink); }
 .sidebar nav a, .desktop-header, .section-heading .eyebrow,
@@ -93,10 +93,10 @@ button:focus-visible, a:focus-visible, input:focus-visible,
 }
 @keyframes gold-foil { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 @media (max-width: 767px) {
-  .mobile-header .wordmark { width: 60px; }
+  .mobile-header .wordmark { width: 50px; }
   #app::before, .site-transition-layer::before { inset: 8px; border-color: #d8b66c24; }
 }
-@media (min-width: 768px) and (max-width: 1150px) { .brand { width: 84px; } }
+@media (min-width: 768px) and (max-width: 1150px) { .brand { width: 72px; } }
 @media (prefers-reduced-motion: reduce) {
   #app::after, .site-transition-layer::after, .couple-names>span,
   .invitation-couple-name, .letter-signoff, .rsvp-page h1, .location-details h2 { animation: none; }

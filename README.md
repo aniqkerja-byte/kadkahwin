@@ -9,7 +9,7 @@ Kad jemputan perkahwinan interaktif menggunakan Vite dan JavaScript. Demo ini me
 - 15 item pakaian dan aksesori boleh diseret menggunakan tetikus atau sentuhan. Tab Wanita/Lelaki pada telefon, anak panah untuk alih item dan Escape untuk pulihkan kedudukan asal. Susunan kekal semasa bertukar halaman dalam sesi yang sama.
 - Mod jemputan pihak lelaki dan perempuan.
 - Tema burgundy dengan tulisan gold, kesan foil dan kilauan halus.
-- Petikan 40 saat TULUS — Teman Hidup dengan fade lembut dan kawalan play/pause; butiran dalam [docs/MUSIC.md](docs/MUSIC.md).
+- Petikan 40 saat TULUS — Teman Hidup cuba autoplay semasa kad dibuka, dengan fade lembut dan kawalan play/pause. Jika autoplay disekat browser, muzik bermula selepas interaksi; butiran dalam [docs/MUSIC.md](docs/MUSIC.md).
 - Font dihoskan sendiri dan sokongan reduced motion; animasi kilauan dihentikan mengikut tetapan pengguna.
 - RSVP divalidasi dan disimulasikan dalam memori pelayar sahaja. Tiada API, Google Sheets, credentials, localStorage atau sessionStorage.
 - Nombor hubungan hanyalah placeholder; pautan WhatsApp dinyahaktifkan.

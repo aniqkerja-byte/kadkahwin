@@ -3,7 +3,8 @@ export function installWeddingMusic() {
   const audio = document.createElement('audio');
   audio.id = 'wedding-music';
   audio.src = '/assets/teman-hidup-wedding.mp3';
-  audio.preload = 'none';
+  audio.preload = 'auto';
+  audio.autoplay = true;
   audio.loop = true;
   audio.volume = .35;
   audio.hidden = true;
@@ -18,7 +19,7 @@ export function installWeddingMusic() {
 
   let wantsPlayback = false;
   let revision = 0;
-  const removeAutoStart = () => document.removeEventListener('pointerdown', firstInteraction, true);
+  const removeAutoStart = () => document.removeEventListener('click', firstInteraction, true);
   const sync = () => {
     const playing = !audio.paused;
     button.classList.toggle('is-playing', playing);
@@ -26,14 +27,15 @@ export function installWeddingMusic() {
     button.setAttribute('aria-label', `${playing ? 'Jeda' : 'Mainkan'} muzik: TULUS — Teman Hidup`);
     button.querySelector('.music-label').textContent = playing ? 'Muzik' : 'Mainkan';
   };
-  const play = async () => {
-    removeAutoStart();
+  const play = async ({ automatic = false } = {}) => {
+    if (!automatic) removeAutoStart();
     wantsPlayback = true;
     const request = ++revision;
     try {
       if (audio.error) audio.load();
       await audio.play();
       if (request !== revision && !wantsPlayback) audio.pause();
+      else if (request === revision) removeAutoStart();
     } catch {
       if (request !== revision) return;
       wantsPlayback = false;
@@ -64,6 +66,8 @@ export function installWeddingMusic() {
     button.title = 'Muzik belum dapat dimuatkan. Tekan untuk cuba lagi.';
   });
   document.body.append(audio, button);
-  document.addEventListener('pointerdown', firstInteraction, true);
+  document.addEventListener('click', firstInteraction, true);
   sync();
+  // Try immediately; browsers that block audible autoplay retain the click fallback.
+  void play({ automatic: true });
 }

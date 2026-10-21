@@ -11,7 +11,6 @@ export const wedding = {
   location: 'Kuala Lumpur',
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Kuala%20Lumpur',
   assistanceHeading: 'Untuk Sebarang Bantuan / Pertanyaan Berkaitan Majlis',
-  parkingNote: 'Contoh maklumat parkir: tetamu boleh menggunakan ruang letak kenderaan berhampiran dewan. Butiran majlis ini adalah rekaan untuk demo portfolio.',
   parents: {
     groom: ['Ismail Rahman', 'Mariam Abdullah'],
     bride: ["Zainal Hassan", 'Aisyah Ibrahim'],

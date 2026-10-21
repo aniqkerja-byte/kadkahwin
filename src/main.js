@@ -140,7 +140,6 @@ function locationPage() {
       <img class="venue-lineart" src="/assets/venue.svg" alt="Ilustrasi dewan rekaan untuk demo" width="760" height="305" />
       <div class="location-details"><h2>${wedding.venue}</h2><p>${wedding.location}</p><p class="location-time">${wedding.date}<span>·</span>${wedding.time}</p><a class="button" href="${wedding.mapsUrl}" target="_blank" rel="noopener noreferrer">${pin}Buka Google Maps${external}</a><p class="map-caption">Lokasi contoh: Kuala Lumpur</p></div>
       <div class="contacts"><h2 class="assistance-heading">${wedding.assistanceHeading}</h2><div class="contact-grid" data-count="${contacts.length}">${contacts.map(c=>`<div class="contact"><span class="contact-name">${c.name}</span><span class="contact-number">${c.phone} · Contoh sahaja</span></div>`).join('')}</div></div>
-      <aside class="parking-note" aria-label="Tempat Letak Kenderaan"><strong>Tempat Letak Kenderaan:</strong> ${wedding.parkingNote}</aside>
     </div>
   </section>`;
 

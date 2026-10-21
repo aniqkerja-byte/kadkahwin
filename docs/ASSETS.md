@@ -1,8 +1,18 @@
 # Aset visual
 
-## Monogram AS minimal (aktif)
+## Monogram AS daripada imej pengguna (aktif)
 
-Logo semasa menggunakan huruf **AS bersatu**, tanpa ampersand, hiasan, glow atau kesan 3D. Bentuk huruf serif Cormorant Garamond 500 ditukar kepada path SVG, dengan satu warna gold rata `#e8c985` dan latar telus. SVG digunakan untuk header, sidebar dan favicon.
+Logo AS kaligrafi menggunakan imej yang dipilih pengguna. Built-in imagegen digunakan untuk menukar dakwat hitam kepada gold rata dan menjadikan latar putih telus, tanpa menambah ampersand atau hiasan. [Prompt edit](branding/monogram-as-reference-v3-prompt.md).
+
+- Imej pengguna: `references/branding/monogram-as-user-original-v3.png`.
+- Hasil edit: `references/branding/monogram-as-reference-gold-source-v3.png`.
+- Logo web: `public/assets/monogram-as-reference-gold-v3.webp` (768 × 768).
+- Favicon: `public/assets/monogram-as-reference-gold-favicon-v3.png` (128 × 128).
+- Eksport semula: `node scripts/export-monogram.mjs v3`.
+
+## Monogram AS minimal v2 (arkib)
+
+Versi terdahulu menggunakan huruf **AS bersatu**, tanpa ampersand, hiasan, glow atau kesan 3D. Bentuk huruf serif Cormorant Garamond 500 ditukar kepada path SVG, dengan satu warna gold rata `#e8c985` dan latar telus. Tidak lagi digunakan oleh laman.
 
 - Logo vektor: `public/assets/monogram-as-minimal-v2.svg`.
 - Bina semula: pasang FontTools pada Python, kemudian jalankan `python scripts/build-minimal-monogram.py` selepas `pnpm install`.

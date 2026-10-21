@@ -40,7 +40,7 @@ body { background: var(--paper); }
 }
 .sidebar, .home-page, .mobile-header { background: transparent; }
 .sidebar.is-open { background: var(--card-background); border: 1px solid var(--rule); }
-.brand { width: 88px; margin-bottom: 44px; }
+.brand { width: 88px; margin-bottom: 26px; }
 .brand img { width: 100%; mix-blend-mode: normal; opacity: 1; }
 .couple-names { color: var(--ink); }
 .sidebar nav a, .desktop-header, .section-heading .eyebrow,

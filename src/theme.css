@@ -42,6 +42,8 @@ body { background: var(--paper); }
 .sidebar.is-open { background: var(--card-background); border: 1px solid var(--rule); }
 .brand { width: 76px; margin-bottom: 38px; }
 .brand img { width: 100%; mix-blend-mode: normal; opacity: 1; }
+.desktop-header { align-items: flex-end; }
+.desktop-header > span { display: flex; align-items: center; height: 44px; padding-top: 10px; line-height: 1.4; }
 .home-page .home-flower { width: clamp(96px, 8.5vw, 124px); margin: 0 auto 14px; }
 .home-page .couple-names {
   display: grid;

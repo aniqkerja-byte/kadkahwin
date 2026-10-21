@@ -76,7 +76,7 @@ function queueFitActivePage() {
 }
 const scrollNavigation = installScrollNavigation({
   container: main,
-  menuIsOpen: () => document.querySelector('.menu-toggle').getAttribute('aria-expanded') === 'true' || Boolean(main.querySelector('.outfit-board.is-dragging')),
+  menuIsOpen: () => document.querySelector('.menu-toggle').getAttribute('aria-expanded') === 'true' || Boolean(main.querySelector('.outfit-board.is-dragging')) || Boolean(document.querySelector('#app .music-panel:not([hidden])')),
   navigate: direction => {
     const next = activeIndex + direction;
     if (next < 0 || next >= pages.length) return false;

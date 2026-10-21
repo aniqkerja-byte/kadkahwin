@@ -1,5 +1,9 @@
 # Aset visual
 
+## Cover pemain muzik
+
+`public/assets/tulus-album-cover.png` ialah imej cover TULUS 1000 × 1000 yang dibekalkan pengguna. Imej asal disalin tanpa suntingan untuk panel muzik Teman Hidup.
+
 ## Monogram AS daripada imej pengguna (aktif)
 
 Logo AS kaligrafi menggunakan imej yang dipilih pengguna. Built-in imagegen digunakan untuk menukar dakwat hitam kepada gold rata dan menjadikan latar putih telus, tanpa menambah ampersand atau hiasan. [Prompt edit](branding/monogram-as-reference-v3-prompt.md).

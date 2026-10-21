@@ -72,3 +72,44 @@ test('first home reveal waits for both name fonts instead of showing fallback te
   await expect(page.locator('main .couple-names')).toBeVisible();
   expect(await page.evaluate(() => document.fonts.check('400 16px "Great Vibes"') && document.fonts.check('400 16px "Allura"'))).toBe(true);
 });
+
+test('arrival opens slowly then settles with every name and event detail visible', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/#home');
+  await expect(page.locator('main')).toHaveAttribute('data-opening', 'true');
+  await expect(page.locator('.card-opening')).toHaveCount(1);
+  await expect(page.locator('.event-summary')).toHaveCSS('opacity', '0');
+  await expect(page.locator('main')).not.toHaveAttribute('data-opening', { timeout: 6500 });
+  await expect(page.locator('.card-opening')).toHaveCount(0);
+  for (const selector of ['.groom-name', '.bride-name', '.event-summary']) {
+    await expect(page.locator(selector)).toHaveCSS('opacity', '1');
+  }
+  await expect(page.locator('.ampersand')).toHaveCSS('opacity', '0.7');
+  await expect(page.locator('audio')).toHaveCount(1);
+});
+
+test('a touch skips the opening immediately and ordinary navigation does not replay it', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/#invitation');
+  await expect(page.locator('main')).toHaveAttribute('data-opening', 'true');
+  await page.locator('main').click({ position: { x: 20, y: 20 } });
+  await expect(page.locator('.card-opening')).toHaveCount(0);
+  await expect(page.locator('main')).not.toHaveAttribute('data-transitioning');
+  await expect(page.locator('main')).toHaveAttribute('data-page', 'invitation');
+  await expect(page.locator('.invitation-couple')).toHaveCSS('opacity', '1');
+  await page.getByRole('button', { name: 'Buka menu' }).click();
+  await page.locator('nav a[href="#home"]').click();
+  await expect(page.locator('main')).toHaveAttribute('data-page', 'home');
+  await expect(page.locator('main')).not.toHaveAttribute('data-opening');
+  await expect(page.locator('.card-opening')).toHaveCount(0);
+});
+
+test('reduced motion reveals a direct invitation immediately without opening effects', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/#invitation');
+  await expect(page.locator('main')).toHaveAttribute('data-page', 'invitation');
+  await expect(page.locator('main')).not.toHaveAttribute('data-opening');
+  await expect(page.locator('.card-opening')).toHaveCount(0);
+  await expect(page.locator('.invitation-couple')).toHaveCSS('opacity', '1');
+  expect(await page.locator('main').evaluate(element => element.getAnimations({ subtree: true }).length)).toBe(0);
+});

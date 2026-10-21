@@ -7,6 +7,7 @@ export function createPageTransitions(container) {
   let revision = 0;
   let oldLayer = null;
   let newLayer = null;
+  let opening = null;
   const scrollOffsets = new WeakMap();
 
   function clear() {
@@ -17,6 +18,9 @@ export function createPageTransitions(container) {
     newLayer?.remove();
     oldLayer = null;
     newLayer = null;
+    opening?.remove();
+    opening = null;
+    delete container.dataset.opening;
     delete container.dataset.transitioning;
   }
 
@@ -61,7 +65,7 @@ export function createPageTransitions(container) {
     return layer;
   }
 
-  function revealContent(page, direction, initial) {
+  function revealContent(page, direction) {
     if (!page) return [];
     return [...page.children]
       .filter(element => !element.classList.contains('sr-only'))
@@ -69,10 +73,57 @@ export function createPageTransitions(container) {
         { opacity: 0, translate: `${direction * 16}px 0` },
         { opacity: 1, translate: '0 0' },
       ], {
-        delay: (initial ? 25 : 210) + Math.min(index, 5) * 38,
-        duration: initial ? 430 : 390,
+        delay: 210 + Math.min(index, 5) * 38,
+        duration: 390,
         easing: 'cubic-bezier(.22, 1, .36, 1)',
       }));
+  }
+
+  function revealOpening(page) {
+    opening = document.createElement('div');
+    opening.className = 'card-opening';
+    opening.setAttribute('aria-hidden', 'true');
+    opening.innerHTML = '<div class="opening-light"></div><div class="opening-leaf opening-leaf-left"></div><div class="opening-leaf opening-leaf-right"></div><img class="opening-monogram" src="/assets/monogram-as-reference-gold-v3.webp" alt="" width="768" height="768"/>';
+    root.append(opening);
+    container.dataset.opening = 'true';
+    const effects = [
+      animate(opening.querySelector('.opening-monogram'), [
+        { opacity: 0, scale: '.96', offset: 0 },
+        { opacity: 1, scale: '1', offset: .25 },
+        { opacity: 1, scale: '1', offset: .6 },
+        { opacity: 0, scale: '1.025', offset: 1 },
+      ], { duration: 1200, easing: 'linear' }),
+      animate(opening.querySelector('.opening-light'), [
+        { opacity: 0, offset: 0 }, { opacity: .5, offset: .55 }, { opacity: 0, offset: 1 },
+      ], { delay: 400, duration: 2400, easing: 'ease-in-out' }),
+      ...['left', 'right'].map((side, index) => animate(opening.querySelector(`.opening-leaf-${side}`), [
+        { transform: 'perspective(1800px) rotateY(0deg)', opacity: 1 },
+        { transform: `perspective(1800px) rotateY(${index ? '' : '-'}84deg)`, opacity: 1, offset: .85 },
+        { transform: `perspective(1800px) rotateY(${index ? '' : '-'}94deg)`, opacity: 0 },
+      ], { delay: 320, duration: 1900, easing: 'cubic-bezier(.45, 0, .18, 1)' })),
+    ];
+    const reveal = (element, delay, duration = 1400, distance = 14) => {
+      if (!element) return;
+      const opacity = getComputedStyle(element).opacity;
+      effects.push(animate(element, [
+        { opacity: 0, translate: `0 ${distance}px` },
+        { opacity, translate: '0 0' },
+      ], { delay, duration, easing: 'cubic-bezier(.22, .65, .25, 1)' }));
+    };
+    if (page?.classList.contains('home-page')) {
+      reveal(page.querySelector('.home-flower'), 720, 1400, 8);
+      reveal(page.querySelector('.groom-name'), 1100, 1600);
+      reveal(page.querySelector('.ampersand'), 1450, 1100, 6);
+      reveal(page.querySelector('.bride-name'), 1650, 1600);
+      reveal(page.querySelector('.event-summary'), 2350, 1200, 10);
+    } else if (page?.classList.contains('invitation-page')) {
+      reveal(page.querySelector('.bismillah'), 800);
+      page.querySelectorAll('.invitation-copy > p').forEach((element, index) => reveal(element, 1100 + index * 230, 1300, 10));
+    } else {
+      [...(page?.children ?? [])].filter(element => !element.classList.contains('sr-only'))
+        .forEach((element, index) => reveal(element, 850 + Math.min(index, 5) * 220, 1400, 10));
+    }
+    return effects;
   }
 
   async function run(render, { direction = 1, initial = false } = {}) {
@@ -91,7 +142,7 @@ export function createPageTransitions(container) {
     if (initial || !oldLayer) {
       container.dataset.transitioning = 'true';
       try {
-        await Promise.all(revealContent(container.querySelector('.page'), direction, true));
+        await Promise.all(revealOpening(container.querySelector('.page')));
       } finally {
         if (current === revision) clear();
       }
@@ -118,7 +169,7 @@ export function createPageTransitions(container) {
         { transform: `translate3d(${startX}%, 0, 0)` },
         { transform: 'translate3d(0, 0, 0)' },
       ]),
-      ...revealContent(newPage, direction, false),
+      ...revealContent(newPage, direction),
     ];
 
     try {
@@ -136,10 +187,13 @@ export function createPageTransitions(container) {
   window.addEventListener('resize', finish);
   // Let users interact immediately instead of waiting for the visual tail.
   root.addEventListener('pointerdown', event => {
-    if (event.target.closest('button, input, select, textarea, a')) finish();
+    if (opening || event.target.closest('button, input, select, textarea, a')) finish();
   }, { capture: true });
   root.addEventListener('keydown', event => {
     if (event.target.closest('button, input, select, textarea')) finish();
+  }, { capture: true });
+  window.addEventListener('keydown', event => {
+    if (opening && ['Escape', 'Enter', ' ', 'Tab'].includes(event.key)) finish();
   }, { capture: true });
   return { run, finish };
 }

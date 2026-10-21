@@ -1,0 +1,43 @@
+/* A quiet, two-leaf paper opening, used only on the initial arrival. */
+.card-opening {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+}
+.opening-leaf {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 2;
+  background-color: #3d1022;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+.opening-leaf-left {
+  left: 0;
+  transform-origin: left center;
+  background-image: radial-gradient(ellipse at 100% 45%, #67243a66, transparent 75%), linear-gradient(90deg, #300b1b, #481429);
+  box-shadow: inset -1px 0 #d8b66c55, 12px 0 32px #19040d24;
+}
+.opening-leaf-right {
+  right: 0;
+  transform-origin: right center;
+  background-image: radial-gradient(ellipse at 0% 45%, #67243a66, transparent 75%), linear-gradient(90deg, #481429, #300b1b);
+  box-shadow: inset 1px 0 #d8b66c55, -12px 0 32px #19040d24;
+}
+.opening-leaf::after { content: ''; position: absolute; top: 14px; bottom: 14px; border: 1px solid #d8b66c2b; }
+.opening-leaf-left::after { left: 14px; right: -1px; }
+.opening-leaf-right::after { left: -1px; right: 14px; }
+.opening-monogram { position: absolute; left: 50%; top: 50%; z-index: 3; width: 112px; height: 112px; object-fit: contain; transform: translate(-50%, -50%); }
+.opening-light { position: absolute; inset: -15%; z-index: 1; background: radial-gradient(ellipse at 50% 45%, #f1d89e20, transparent 60%); }
+@media (max-width: 767px) {
+  .opening-monogram { width: 86px; height: 86px; }
+  .opening-leaf::after { top: 8px; bottom: 8px; }
+  .opening-leaf-left::after { left: 8px; }
+  .opening-leaf-right::after { right: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .card-opening { display: none; } }

@@ -13,6 +13,7 @@ import './location.css';
 import './rsvp.css';
 import './demo.css';
 import './theme.css';
+import './opening.css';
 import './music.css';
 import { installWeddingMusic } from './music.js';
 import { pages as allPages, wedding } from './content.js';

@@ -121,4 +121,3 @@ if (location.hash) document.fonts.ready.then(() => {
   const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
   target?.scrollIntoView({ behavior: 'instant' });
 });
-

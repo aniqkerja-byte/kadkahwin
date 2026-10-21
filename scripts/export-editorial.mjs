@@ -24,4 +24,3 @@ try {
     console.log('Exported ' + name + ' at 480 / 960 / 1600px');
   }
 } finally { await browser.close(); }
-

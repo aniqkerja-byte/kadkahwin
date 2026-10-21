@@ -19,4 +19,3 @@ export function calendarFile() {
     'END:VEVENT', 'END:VCALENDAR', ''
   ].join('\r\n');
 }
-

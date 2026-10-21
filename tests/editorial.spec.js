@@ -185,4 +185,3 @@ test('opening is gradual, never blocks controls, does not replay and respects mo
   await page.reload();
   expect(await page.evaluate(() => window.heroAnimations)).toBe(0);
 });
-

@@ -48,4 +48,3 @@ export function setupMusic() {
   sync();
   void play();
 }
-

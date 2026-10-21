@@ -1,8 +1,12 @@
 # Aset visual
 
-## Ilustrasi masjid gold v2 (aktif)
+## Ilustrasi masjid gold v3 (aktif)
 
-`public/assets/mosque-gold-user-v2.png` ialah gambar pengganti 2171 × 724 yang dipilih pengguna. Fail PNG disalin terus tanpa suntingan warna atau bentuk dan digunakan pada halaman lokasi Masjid Negara.
+`public/assets/mosque-gold-user-v3.png` ialah imej terbaru pengguna, `Elegant Golden Mosque Line Art.png` (2172 × 724). Fail disalin terus tanpa suntingan untuk halaman lokasi Masjid Negara.
+
+## Ilustrasi masjid gold v2 (arkib)
+
+`public/assets/mosque-gold-user-v2.png` ialah gambar terdahulu 2171 × 724 yang dipilih pengguna, disalin tanpa suntingan warna atau bentuk.
 
 ## Ilustrasi masjid gold v1 (arkib)
 

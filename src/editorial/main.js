@@ -115,48 +115,6 @@ document.querySelector('#save-date').addEventListener('click', () => {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 });
 
-const photos = [
-  { name: 'walk', caption: 'Selangkah, bersama — Hana dan Danish di taman' },
-  { name: 'portrait', caption: 'Tempat pulang — Potret Hana dan Danish' },
-  { name: 'details', caption: 'Sebuah janji — Cincin dan bunga' },
-];
-const dialog = document.querySelector('#lightbox');
-const lightboxImage = document.querySelector('#lightbox-image');
-let currentPhoto = 0;
-let opener;
-function showPhoto(index) {
-  currentPhoto = (index + photos.length) % photos.length;
-  lightboxImage.src = '/assets/editorial/' + photos[currentPhoto].name + '-1600.webp';
-  lightboxImage.alt = photos[currentPhoto].caption;
-  document.querySelector('#photo-caption').textContent = photos[currentPhoto].caption;
-  document.querySelector('#photo-number').textContent = (currentPhoto + 1) + ' / ' + photos.length;
-}
-document.querySelectorAll('[data-photo]').forEach(button => button.addEventListener('click', () => {
-  opener = button;
-  showPhoto(Number(button.dataset.photo));
-  dialog.showModal();
-  document.querySelector('#close-lightbox').focus();
-  animate(dialog, [{ opacity: 0 }, { opacity: 1 }], { duration: 180 });
-}));
-document.querySelector('#close-lightbox').addEventListener('click', () => dialog.close());
-document.querySelector('#previous-photo').addEventListener('click', () => showPhoto(currentPhoto - 1));
-document.querySelector('#next-photo').addEventListener('click', () => showPhoto(currentPhoto + 1));
-dialog.addEventListener('keydown', e => {
-  if (e.key === 'Tab') {
-    const controls = [...dialog.querySelectorAll('button')];
-    const first = controls[0];
-    const last = controls.at(-1);
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  }
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-    e.preventDefault();
-    showPhoto(currentPhoto + (e.key === 'ArrowLeft' ? -1 : 1));
-  }
-});
-dialog.addEventListener('click', e => { if (e.target === dialog && (e.clientX < dialog.getBoundingClientRect().left || e.clientX > dialog.getBoundingClientRect().right || e.clientY < dialog.getBoundingClientRect().top || e.clientY > dialog.getBoundingClientRect().bottom)) dialog.close(); });
-dialog.addEventListener('close', () => opener?.focus());
-
 const form = document.querySelector('#rsvp-form');
 const result = document.querySelector('#rsvp-result');
 form.addEventListener('change', () => {

@@ -13,7 +13,7 @@ Versi burgundy asal disimpan pada tag `template/burgundy-v1` (commit `9012aea`).
 ## JANJI — Botani Elegan
 
 - Kad menegak dengan sampul berseal, bunga putih dan daun sage, kaligrafi serta aksen champagne gold. Cormorant Garamond, Great Vibes dan Manrope dihoskan sendiri.
-- Menu tetamu di bawah: Hubungi, Lokasi, Hadiah dan RSVP/ucapan. Galeri lightbox, doa pengantin, atur cara, swatch pakaian, peta dan kalendar `.ics`.
+- Menu tetamu di bawah: Hubungi, Lokasi, Hadiah dan RSVP/ucapan. Doa pengantin, atur cara, swatch pakaian, peta dan kalendar `.ics`.
 - Countdown menggunakan waktu Malaysia: 22 Mei 2027, 11.00 pagi–4.30 petang; mesej berubah semasa/selepas majlis.
 - Petikan TULUS sedia ada bermula selepas sampul dibuka; pemain inline di penutup kad, fallback interaksi dan pilihan jeda sepanjang lawatan.
 - RSVP disimulasikan dalam memori dengan validasi bersama daripada `src/rsvp.js`; tiada penghantaran atau simpanan data.

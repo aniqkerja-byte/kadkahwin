@@ -99,26 +99,6 @@ test('countdown boundaries and downloaded calendar keep Malaysia event times',as
   expect(text).toContain('DTEND:20270522T083000Z');
 });
 
-test('lightbox arrow keys, Escape, Tab trap and focus return',async({page})=>{
-  await page.emulateMedia({reducedMotion:'reduce'});
-  await openCard(page);
-  const opener=page.getByRole('button',{name:'Buka foto berjalan di taman'});
-  await opener.click();
-  await expect(page.locator('#lightbox')).toBeVisible();
-  await page.keyboard.press('ArrowRight');
-  await expect(page.locator('#lightbox-image')).toHaveAttribute('src',/portrait/);
-  await page.keyboard.press('ArrowLeft');
-  await page.keyboard.press('ArrowLeft');
-  await expect(page.locator('#lightbox-image')).toHaveAttribute('src',/details/);
-  for(let i=0;i<5;i++) {
-    await page.keyboard.press('Tab');
-    expect(await page.evaluate(()=>!!document.activeElement.closest('#lightbox'))).toBe(true);
-  }
-  await page.keyboard.press('Escape');
-  await expect(page.locator('#lightbox')).not.toBeVisible();
-  await expect(opener).toBeFocused();
-});
-
 test('guest dock opens useful contact and gift sheets without fake destinations',async({page})=>{
   await page.emulateMedia({reducedMotion:'reduce'});
   await openCard(page);

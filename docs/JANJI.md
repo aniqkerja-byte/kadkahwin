@@ -10,6 +10,8 @@ JANJI is a narrow, vertical digital wedding card inspired by the flow of the use
 4. A bottom guest dock exposes contact information, location, gift information and RSVP. Contact/gift dialogs explain the demo content without invented phone numbers, payment accounts or QR codes.
 5. The footer contains the inline music controls and return link to the catalog. The music player itself scrolls with content.
 
+The footer player is a miniature sage turntable with an album-label vinyl, champagne tonearm, playback button and seek control. Playback accelerates the platter smoothly; pause decelerates it to rest without resetting the record angle. The tonearm lowers onto the record and returns to its rest on pause. Reduced motion stops platter movement and removes arm transitions. The motor lives in `src/editorial/turntable.js` and follows actual audio state.
+
 The same card width is used on desktop (maximum 500px) and phone, with a soft botanical backdrop on wide screens. There is no website navigation header or split hero layout.
 
 ## Files and assets

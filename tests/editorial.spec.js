@@ -148,19 +148,27 @@ test('opening starts one audio player, supports seek and preserves manual pause'
   await expect(audio).toHaveCount(1);
   await expect(audio).toHaveJSProperty('paused',false);
   const vinyl=page.locator('.vinyl-record');
-  await expect(vinyl).toHaveCSS('animation-name','none');
+  const player=page.locator('.music-player');
+  await expect(player).toHaveAttribute('data-motor','stopped');
   await page.emulateMedia({reducedMotion:'no-preference'});
-  await expect(vinyl).toHaveCSS('animation-play-state','running');
+  await expect(player).toHaveAttribute('data-motor','running');
+  const playingAngle=await vinyl.evaluate(el=>el.style.transform);
   await page.getByRole('button',{name:'Jeda muzik'}).click();
-  await expect(vinyl).toHaveCSS('animation-play-state','paused');
+  await expect(player).toHaveAttribute('data-motor','stopping');
+  await expect(player).toHaveAttribute('data-motor','stopped');
+  const stoppedAngle=await vinyl.evaluate(el=>el.style.transform);
+  expect(stoppedAngle).not.toBe(playingAngle);
   await page.locator('#music-seek').fill('20');
   await expect.poll(()=>audio.evaluate(a=>a.currentTime)).toBeCloseTo(20,0);
   await page.locator('#guest-dock a[href="#rsvp"]').click();
   await expect(audio).toHaveJSProperty('paused',true);
+  expect(await vinyl.evaluate(el=>el.style.transform)).toBe(stoppedAngle);
   expect(await page.locator('.music-player').evaluate(el=>getComputedStyle(el).position)).not.toMatch(/fixed|sticky/);
   await page.getByRole('button',{name:'Mainkan muzik'}).click();
   await expect(audio).toHaveJSProperty('paused',false);
-  await expect(vinyl).toHaveCSS('animation-play-state','running');
+  await expect(player).toHaveAttribute('data-motor','running');
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await expect(player).toHaveAttribute('data-motor','stopped');
 });
 
 test('blocked audio on direct entry retries after a gesture',async({page})=>{

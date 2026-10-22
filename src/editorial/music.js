@@ -1,3 +1,5 @@
+import { createTurntableMotor } from './turntable.js';
+
 export function setupMusic() {
   const audio = document.querySelector('#wedding-audio');
   const player = document.querySelector('.music-player');
@@ -5,12 +7,14 @@ export function setupMusic() {
   const seek = document.querySelector('#music-seek');
   const time = document.querySelector('#music-time');
   const status = document.querySelector('#music-status');
+  const motor = createTurntableMotor(player, player.querySelector('.vinyl-record'));
   let manuallyPaused = false;
   let attempting = false;
   const format = seconds => Math.floor(seconds / 60) + ':' + String(Math.floor(seconds % 60)).padStart(2, '0');
   const sync = () => {
-    const playing = !audio.paused;
+    const playing = !audio.paused && !audio.ended && !audio.error;
     player.dataset.playing = String(playing);
+    motor.setPlaying(playing);
     toggle.textContent = playing ? 'Ⅱ' : '▶';
     toggle.setAttribute('aria-label', playing ? 'Jeda muzik' : 'Mainkan muzik');
     toggle.setAttribute('aria-pressed', String(playing));

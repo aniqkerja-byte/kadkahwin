@@ -147,7 +147,12 @@ test('opening starts one audio player, supports seek and preserves manual pause'
   const audio=page.locator('audio');
   await expect(audio).toHaveCount(1);
   await expect(audio).toHaveJSProperty('paused',false);
+  const vinyl=page.locator('.vinyl-record');
+  await expect(vinyl).toHaveCSS('animation-name','none');
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await expect(vinyl).toHaveCSS('animation-play-state','running');
   await page.getByRole('button',{name:'Jeda muzik'}).click();
+  await expect(vinyl).toHaveCSS('animation-play-state','paused');
   await page.locator('#music-seek').fill('20');
   await expect.poll(()=>audio.evaluate(a=>a.currentTime)).toBeCloseTo(20,0);
   await page.locator('#guest-dock a[href="#rsvp"]').click();
@@ -155,6 +160,7 @@ test('opening starts one audio player, supports seek and preserves manual pause'
   expect(await page.locator('.music-player').evaluate(el=>getComputedStyle(el).position)).not.toMatch(/fixed|sticky/);
   await page.getByRole('button',{name:'Mainkan muzik'}).click();
   await expect(audio).toHaveJSProperty('paused',false);
+  await expect(vinyl).toHaveCSS('animation-play-state','running');
 });
 
 test('blocked audio on direct entry retries after a gesture',async({page})=>{

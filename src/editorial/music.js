@@ -1,5 +1,6 @@
 export function setupMusic() {
   const audio = document.querySelector('#wedding-audio');
+  const player = document.querySelector('.music-player');
   const toggle = document.querySelector('#music-toggle');
   const seek = document.querySelector('#music-seek');
   const time = document.querySelector('#music-time');
@@ -9,6 +10,7 @@ export function setupMusic() {
   const format = seconds => Math.floor(seconds / 60) + ':' + String(Math.floor(seconds % 60)).padStart(2, '0');
   const sync = () => {
     const playing = !audio.paused;
+    player.dataset.playing = String(playing);
     toggle.textContent = playing ? 'Ⅱ' : '▶';
     toggle.setAttribute('aria-label', playing ? 'Jeda muzik' : 'Mainkan muzik');
     toggle.setAttribute('aria-pressed', String(playing));

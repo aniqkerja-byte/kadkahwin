@@ -1,32 +1,37 @@
-# JANJI — panduan penyelenggaraan
+# JANJI — Botani Elegan (v2)
 
-## Halaman dan pengasingan
+JANJI is a narrow, vertical digital wedding card inspired by the flow of the user's TrulyInvite reference. It replaces the former editorial website layout. Version 1 remains recoverable at tag `template/janji-editorial-v1`. The burgundy Klasik Elegan card is independent.
 
-Vite 8 membina tiga input HTML: `index.html`, `editorial/index.html`, `koleksi/index.html`. Ketiga-tiganya boleh dimuatkan terus dan direfresh. JANJI dan katalog tidak mengimport stylesheet, renderer hash atau navigasi penuh skrin burgundy. Hanya validasi RSVP tulen dikongsi. Tag `template/burgundy-v1` menunjuk kepada commit `9012aea` sebelum perubahan.
+## Guest flow
 
-## Kandungan dan masa
+1. A sage envelope with HD monogram and champagne wax seal invites the guest to open.
+2. Clicking the seal reveals the centered floral title card and starts the existing TULUS excerpt. Reduced motion opens immediately. Ordinary anchor navigation does not replay the envelope.
+3. The card flows through family invitation, date/countdown, venue, program/dresscode, prayer, photo memories and RSVP/wishes.
+4. A bottom guest dock exposes contact information, location, gift information and RSVP. Contact/gift dialogs explain the demo content without invented phone numbers, payment accounts or QR codes.
+5. The footer contains the inline music controls and return link to the catalog. The music player itself scrolls with content.
 
-Teks dan struktur JANJI berada dalam `editorial/index.html`. Tarikh countdown dan fail kalendar berada dalam `src/editorial/event.js`; kedua-dua tempat perlu dikemas kini jika tarikh majlis berubah. Acara bermula pada `2027-05-22T11:00:00+08:00` dan tamat pada `2027-05-22T16:30:00+08:00`. ICS menyimpan detik yang sama dalam UTC (03:00–08:30Z) untuk keserasian kalendar dan penukaran zon waktu pengguna.
+The same card width is used on desktop (maximum 500px) and phone, with a soft botanical backdrop on wide screens. There is no website navigation header or split hero layout.
 
-RSVP ialah demonstrasi dalam memori sahaja. Ia tidak memanggil API, menyimpan cookie atau menulis localStorage/sessionStorage. `submitRsvp` digunakan bersama kad asal. Pengesahan muncul inline dan fokus dipindahkan kepada mesej; ralat memfokuskan medan pertama yang perlu dibetulkan.
+## Files and assets
 
-## Foto dan screenshot
+- Entry: `editorial/index.html`; CSS and interaction: `src/editorial/`.
+- Palette: ivory paper, olive text, sage envelope and champagne gold details.
+- Self-hosted Cormorant Garamond, Great Vibes and Manrope.
+- Botanical original: `references/editorial/botanical-v2.png`; web derivative: `public/assets/editorial/botanical-v2.webp`. [Built-in imagegen prompt](janji-botanical-v2-prompt.md).
+- Original fictional couple photos remain in `references/editorial/` and are used in the secondary memory gallery. [Photo prompts](janji-image-prompts.md).
+- `node scripts/export-botanical.mjs` resizes the botanical PNG with its alpha preserved.
+- `node scripts/capture-catalog.mjs` captures actual desktop and phone screenshots, opening the envelope first with reduced motion.
 
-- Originals: `references/editorial/{hero,walk,portrait,details}-v1.png`.
-- Web: `public/assets/editorial/{name}-{480,960,1600}.webp`.
-- Empat foto dijana dengan built-in imagegen; [prompt dan rujukan](janji-image-prompts.md).
-- `node scripts/export-editorial.mjs` menukar saiz/format sahaja, tanpa perubahan warna atau komposisi.
-- `node scripts/capture-catalog.mjs` mengambil screenshot viewport desktop 1440×1000 dan telefon 390×844 daripada server tempatan 5173. Ia menggunakan reduced motion supaya screenshot memaparkan keadaan akhir. Jalankan selepas perubahan visual template.
-- Katalog tidak memuatkan audio. Pautan demo dibuka dalam tab sama.
+## Data and functions
 
-## Muzik dan animasi
+The couple remains Hana Sofea & Danish Hakimi. Event start/end in `src/editorial/event.js` are 22 May 2027, 11:00–16:30 Malaysia. ICS stores the same instants in UTC (03:00–08:30Z). Countdown switches to ongoing/ended messages.
 
-JANJI menggunakan sumber petikan 40 saat serta cover TULUS yang sama dengan burgundy, tetapi controller dan UI sendiri dalam `src/editorial/music.js`. Autoplay dicuba; apabila disekat, klik pengguna atau Enter/Space mencuba lagi. Klik jeda menghentikan percubaan automatik sepanjang dokumen hidup. Reload memulakan lawatan baharu. Muzik tidak dipasang pada sticky/fixed container.
+RSVP reuses `src/rsvp.js`. Name, attendance, pax and optional wishes are kept only in the current form. There is no server, API write, cookie or browser storage; reload clears the form. Confirmation appears inline. The gallery has native modal semantics, Tab containment, arrow keys, Escape and focus return.
 
-Animasi hero bergerak skala 1.025→1 selama 2.4 saat. Teks dan seksyen menggunakan opacity/translateY maksimum 12px selama 720ms. IntersectionObserver memainkan reveal seksyen sekali. CSS tidak menyembunyikan kandungan secara default; kegagalan JavaScript atau foto tidak meninggalkan halaman kosong. Reduced motion membatalkan animasi dan menggunakan scroll segera. Dialog native menyediakan modal focus containment dan Escape; fokus kembali ke pencetus apabila ditutup.
+Direct valid anchors such as `/editorial/#rsvp` bypass the envelope and align after fonts load. This supports shared links and refresh. Music autoplay on direct entry remains subject to browser policy; first interaction retries, and manual pause is respected.
 
-## Semakan
+## Validation
 
-`pnpm test --workers=2` menjalankan semua ujian burgundy dan JANJI. Ujian JANJI merangkumi 320/390/768/1440px, aset, refresh, anchor, validasi RSVP, tiada penghantaran data, countdown, muat turun ICS, autoplay dibenarkan/disekat, pause/seek, lightbox/fokus dan foto gagal dimuatkan. `pnpm build` menghasilkan semua halaman dalam `dist/`.
+`pnpm test --workers=2` covers the existing burgundy suite and new card flow at 320, 390, 768 and 1440px, envelope/opening, keyboard and reduced motion, guest dialogs/dock, RSVP/wishes, calendar, gallery, audio and failed images. `pnpm build` builds all three independent HTML entries.
 
-Preview production: `pnpm preview --port 4180 --strictPort`. Tiada domain atau deployment baharu disambungkan dalam fasa ini.
+No domain or deployment connection was created. Changes are delivered to the existing demo repository.

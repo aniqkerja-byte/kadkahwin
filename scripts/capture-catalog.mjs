@@ -9,6 +9,7 @@ try {
       const page = await browser.newPage({ viewport: { width, height }, reducedMotion: 'reduce' });
       await page.goto(base + path);
       await page.evaluate(() => document.fonts.ready);
+      if (name === 'editorial') await page.getByRole('button', { name: 'Buka jemputan Hana dan Danish' }).click();
       await page.locator('h1').waitFor();
       await page.waitForFunction(() => [...document.images].filter(i => i.getAttribute('src') && i.loading !== 'lazy').every(i => i.complete && i.naturalWidth > 0));
       const screenshot = await page.screenshot();

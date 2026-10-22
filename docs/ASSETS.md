@@ -1,5 +1,9 @@
 # Aset visual
 
+## Botani JANJI v2 (aktif)
+
+Ilustrasi peony putih, rose ivory dan daun sage dengan aksen champagne dijana menggunakan built-in imagegen untuk sampul dan bingkai kad. PNG asal telus: `references/editorial/botanical-v2.png`; WebP 800px lebar: `public/assets/editorial/botanical-v2.webp`. [Prompt penuh](janji-botanical-v2-prompt.md). Eksport semula tanpa perubahan visual/alpha: `node scripts/export-botanical.mjs`.
+
 ## Fotografi JANJI dan pratonton katalog
 
 Empat foto pasangan Melayu dewasa rekaan dijana melalui **built-in imagegen**. Foto hero digunakan sebagai rujukan identiti dan pakaian untuk tiga foto lain. Sumber PNG disimpan dalam `references/editorial/`; WebP responsif 480, 960 dan 1600px dalam `public/assets/editorial/`. [Prompt tepat bagi setiap foto](janji-image-prompts.md).

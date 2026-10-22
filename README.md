@@ -10,14 +10,14 @@ Koleksi dua kad jemputan perkahwinan menggunakan Vite dan JavaScript. Semua pasa
 
 Versi burgundy asal disimpan pada tag `template/burgundy-v1` (commit `9012aea`). Fail halaman, gaya, kandungan dan navigasi burgundy tidak diubah ketika JANJI ditambah.
 
-## JANJI
+## JANJI — Botani Elegan
 
-- Jemputan editorial dengan scroll menegak, fotografi pasangan rekaan yang konsisten dan font Bodoni Moda / Manrope dihoskan sendiri.
-- Galeri lightbox dengan kawalan papan kekunci, atur cara, swatch pakaian, peta dan muat turun kalendar `.ics`.
+- Kad menegak dengan sampul berseal, bunga putih dan daun sage, kaligrafi serta aksen champagne gold. Cormorant Garamond, Great Vibes dan Manrope dihoskan sendiri.
+- Menu tetamu di bawah: Hubungi, Lokasi, Hadiah dan RSVP/ucapan. Galeri lightbox, doa pengantin, atur cara, swatch pakaian, peta dan kalendar `.ics`.
 - Countdown menggunakan waktu Malaysia: 22 Mei 2027, 11.00 pagi–4.30 petang; mesej berubah semasa/selepas majlis.
-- Pemain muzik inline dengan petikan TULUS sedia ada, autoplay apabila dibenarkan, fallback interaksi dan pilihan jeda sepanjang lawatan.
+- Petikan TULUS sedia ada bermula selepas sampul dibuka; pemain inline di penutup kad, fallback interaksi dan pilihan jeda sepanjang lawatan.
 - RSVP disimulasikan dalam memori dengan validasi bersama daripada `src/rsvp.js`; tiada penghantaran atau simpanan data.
-- Animasi pembukaan 2.4 saat dan reveal seksyen yang menghormati reduced motion. Kandungan kekal boleh digunakan jika foto gagal dimuatkan.
+- Pembukaan sampul sekitar 2 saat dan reveal seksyen yang menghormati reduced motion. Kandungan kekal boleh digunakan jika foto gagal dimuatkan.
 - Halaman masuk: `editorial/index.html`; gaya/fungsi: `src/editorial/`; katalog: `koleksi/index.html` dan `src/catalog/`.
 - [Dokumentasi JANJI](docs/JANJI.md) dan [prompt fotografi](docs/janji-image-prompts.md).
 
